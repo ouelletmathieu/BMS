@@ -6,7 +6,6 @@ from boolean.plot_util import get_average_x_y, colorVec, markerVec, get_quartile
 
       1. plot_mating_comparison: plot the comparison between the mating strategies in the supplementary material. 
       
-
 """
 
 def plot_mating_comparison():
