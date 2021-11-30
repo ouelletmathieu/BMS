@@ -1,9 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from boolean.plot_util import get_average_x_y, colorVec, markerVec, get_quartile_x_y
+from boolean.plot_util import get_average_x_y, colorVec, markerVec, get_quartile_x_y, get_density_x_y
 
 
-def main():
+def plot_1d_properties():
 
     path_file = "./data_example/1d_properties_nodes_7.txt"
 
@@ -60,5 +60,51 @@ def main():
     plt.savefig("./fig/1d_properties_random_graph.pdf", transparent=True)
 
 
+
+def plot_density():
+
+
+    path = './data_example/1d_properties_nodes_'
+    subpath = '.txt'
+    nodes_nb =  [5,6,7,8]
+    xbound = 20
+
+    fig, axs = plt.subplots(nrows=1, ncols=2, figsize=(10, 6))
+    axs[1].set_yscale('log')
+
+    for n, node in enumerate(nodes_nb) :
+        
+        path_file = path+str(node)+subpath
+        df = pd.read_csv(path_file)
+
+        X,Y, dict_count, total = get_density_x_y(df, 'max_cycle', check_cond = False)
+        Xbounded, Ybounded = [], []
+        
+        for i in range(len(X)):
+            if X[i] < xbound:
+                Xbounded.append(X[i])
+                Ybounded.append(Y[i])
+        
+        imsh = axs[0].plot(Xbounded,Ybounded,  marker = markerVec[n], label=str(node)+' nodes', color = colorVec[n], linestyle="None")
+        imsh = axs[1].plot(Xbounded,Ybounded,  marker = markerVec[n], label=str(node)+' nodes', color = colorVec[n], linestyle="None")
+        
+        axs[0].set_title(str('max. cycle density'))
+        axs[1].set_title(str('max. cycle density'))
+        
+        axs[0].set( xlabel='max. cycle lenght', ylabel='density')
+        axs[1].set( xlabel='max. cycle lenght', ylabel='density (log)')
+        
+        axs[0].legend()
+        axs[1].legend()
+
+        axs[0].set_xlim([0, xbound])
+        axs[1].set_xlim([0, xbound])
+    
+        
+    plt.savefig("./fig/density_std.pdf", transparent=True)
+        
+
+
 if __name__ == "__main__":
-    main()
+    plot_1d_properties()
+    plot_density()

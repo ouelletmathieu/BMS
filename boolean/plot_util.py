@@ -158,3 +158,59 @@ def get_quartile_x_y(dataframe, varx, vary, quartile = 95 , min_count = 0, cond_
             y.append(lst[n])
 
     return x, y
+
+
+def get_density_x_y(dataframe, varx, cond_col = 'None', min_col = 0, check_cond = True, toPrint = False):
+    """get the density of varx in the sample
+
+    Args:
+        dataframe ([panda dataframe]): panda dataframe
+        varx ([str]): name of the column x
+        cond_col (str, optional): Condition used in the dataframe for filtering using dataframe[cond_col].to_list(). Defaults to 'None'.
+        min_col (int, optional): [description]. Defaults to 0.
+        check_cond (bool, optional): [description]. If true cond_col is checked, having cond_col ='None' is equivalent to check_cond=False
+        toPrint (bool, optional): [description]. If True print each row
+
+    Returns:
+        [type]: [description]
+    """
+
+    dict_count = dict()
+    total = 0
+
+    x = list()
+    y = list()
+    
+    
+    list_xrow = dataframe[varx].to_list()
+    if cond_col!='None':
+        list_cond = dataframe[cond_col].to_list()
+    
+    if check_cond :
+        list_density = dataframe['density'].to_list()
+    
+    for i in range(len(list_xrow)):
+        
+        xrow = list_xrow[i]
+        if toPrint:
+            print(xrow)
+        if cond_col!='None' and check_cond:
+            if list_density[i] !=0 :
+                if list_cond[i]/list_density[i]>min_col:
+                    total+=1
+                    if xrow in dict_count:
+                        dict_count[xrow]+=1
+                    else:
+                        dict_count[xrow] = 1
+        else:    
+            total+=1
+            if xrow in dict_count:
+                dict_count[xrow]+=1
+            else:
+                dict_count[xrow] = 1
+
+    for key, value in dict_count.items():
+        x.append(key)
+        y.append(value/total)
+    
+    return x, y, dict_count, total
