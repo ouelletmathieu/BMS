@@ -3,7 +3,8 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import networkx as nx
-from boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph
+
+from boolean.boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph
 
 
 

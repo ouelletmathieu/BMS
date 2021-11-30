@@ -96,7 +96,7 @@ def main():
 
             file.writelines(str_output)
 
-
+    file.close() 
 
 if __name__ == "__main__":
     main()
