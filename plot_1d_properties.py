@@ -2,10 +2,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from boolean.plot_util import get_average_x_y, colorVec, markerVec, get_quartile_x_y, get_density_x_y
 
+"""This file contain two scripts :
+
+      1. plot_1d_properties: plot the properties shown in the supplementary material. Need to run sampling_1d_properties before for 7 nodes. 
+      2. plot_density: plot the density for a given cycle as shown in figure 1. Need to run sampling_1d_properties before for 5,6,7,8 nodes. 
+
+"""
 
 def plot_1d_properties():
 
-    path_file = "./data_example/1d_properties_nodes_7.txt"
+    path_file = "./data_example/1d_properties/1d_properties_nodes_7.txt"
 
     df = pd.read_csv(path_file)
 

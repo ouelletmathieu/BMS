@@ -28,7 +28,7 @@ def main():
 
     nb_sample = 5000
     node = 8
-    output_file = "./data_example/1d_properties_nodes_"+str(node)+".txt"
+    output_file = "./data_example/1d_properties/1d_properties_nodes_"+str(node)+".txt"
 
 
     file = open(output_file, 'a') 
