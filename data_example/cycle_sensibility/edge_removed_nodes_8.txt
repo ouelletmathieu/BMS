@@ -1,4 +1,4 @@
-nb_sample,node,max_cycle,avgcycle,max_delta,avg_delta
+nb_sample,node,max_cycle,max_cycle,avgcycle,max_delta,avg_delta,
 36,8,8,8,4.5,7,1.648936170212766,
 69,8,8,8,3.6666666666666665,7,1.4166666666666667,
 84,8,8,8,2.8,7,2.1272727272727274,

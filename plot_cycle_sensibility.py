@@ -23,12 +23,13 @@ def plot_cycle_sensibility():
 
     for n, node in enumerate(nodes_nb) :
         
+        print(node)
         #move the plot a little bit so it is easier to read
         move_by = dscale*(n - int(len(nodes_nb)/2))
         
         path_file = path+str(node)+subpath
         df = pd.read_csv(path_file)
-        
+
         ax = axs[0]
         X,Y,STD = get_average_x_y(df, 'max_cycle', 'max_delta',  min_count = 1 )
         trans1 = ax.transData + ScaledTranslation(move_by, 0, fig.dpi_scale_trans)
@@ -37,7 +38,7 @@ def plot_cycle_sensibility():
         ax.set( xlabel='max. cycle lenght', ylabel=' cycle lenght variation')
         ax.legend()
         ax.set_xlim([7, 17])
-        
+
         ax = axs[1]
         trans1 = ax.transData + ScaledTranslation(move_by, 0, fig.dpi_scale_trans)
         X,Y, STD = get_average_x_y(df, 'max_cycle', 'avg_delta',  min_count = 1)
@@ -46,7 +47,7 @@ def plot_cycle_sensibility():
         ax.set( xlabel='max. cycle lenght', ylabel=' cycle lenght variation')
         ax.legend()
         ax.set_xlim([7, 17])
-        
+
         ax = axs[2]
         trans1 = ax.transData + ScaledTranslation(move_by, 0, fig.dpi_scale_trans)
         X_pc, Y_pc, STD_pc = list(), list(), list()

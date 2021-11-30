@@ -25,7 +25,7 @@ def main():
 
 
     file = open(output_file, 'a') 
-    header = "nb_sample,node,max_cycle,avgcycle,max_delta,avg_delta\n"
+    header = "nb_sample,node,max_cycle,max_cycle,avgcycle,max_delta,avg_delta,\n"
     if os.stat(output_file).st_size < 10:
         file.writelines(header)
 
