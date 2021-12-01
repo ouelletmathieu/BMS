@@ -5,9 +5,7 @@ import networkx as nx
 import numpy as np
 import math
 import itertools
-import xlwt
 import networkx.algorithms.isomorphism as iso
-import xlsxwriter
 from boolean.boolean_util import getDensity, getMaxCycleLength
 from boolean.boolean_util import getInfoRule, checkIfConjugate3, checkIfConjugate2, constructGraph, listToArray, countNonConjugate2
 
@@ -384,7 +382,7 @@ def getZvalue2motifs(list2mat, motif_count, density, nodeNb):
 
 #we added list2mat, list3mat to the method (need to keep the change)
 def get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, rootNode, list2mat, list3mat):
-    """return information about the network in the vec form on 2,3 motifs. See returns for the exact form of the output. 
+    """return list of 2-motif and 3-motifs z-values. See returns for the exact form of the output. 
 
     Args:
         vec : network in vector form (ie. list of element in the matrix in order starting with top left)

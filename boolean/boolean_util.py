@@ -2,27 +2,11 @@ import networkx as nx
 import numpy as np
 import sys
 import random
-import math
 import networkx as nx
 import numpy as np
 import sys
 import random
 import math
-from deap import algorithms
-from deap import base
-from deap.benchmarks.tools import igd
-from deap import creator
-from deap import tools
-import threading
-import time
-import itertools
-import xlwt
-import networkx.algorithms.isomorphism as iso
-import cProfile
-import csv
-import xlsxwriter
-from itertools import chain, combinations
-
 
 """
 list of matrix for isomorphism check, only done for 3 and 4 nodes.
@@ -765,12 +749,6 @@ def getAverage1To1Distance(population):
 
 
 
-
-
-    
-
-
-
 def is_same_dynamic(list_dyn_couple, init_vec, final_vec):
     for couple in list_dyn_couple:
         val1 = couple[0]
@@ -780,3 +758,55 @@ def is_same_dynamic(list_dyn_couple, init_vec, final_vec):
             return False
     
     return True
+
+
+def get_1d_property(vec):
+    """formatting of 1 dimensional properties for a network (vec)
+
+    Args:
+        vec : network in vector form (ie. list of element in the matrix in order starting with top left)
+
+    Returns:
+        [ mxc_inhib, avgc_inhib, mxc_exct, avgc_exct, mxc_all, avgc_all, totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation]
+    """
+        
+    n = int(abs(math.sqrt(len(vec))))
+    mat = listToArray(vec, n)
+    G_inhibition, G_excitation, G_all = nx.DiGraph(), nx.DiGraph(), nx.DiGraph()
+
+    for i in range(n):
+        G_excitation.add_node(i)
+        G_all.add_node(i)
+        G_inhibition.add_node(i)
+    
+    density = 0
+    
+    for i in range(n):
+        for j in range(n):
+            if mat[i,j]!=0:
+                density+=1
+                
+    density = density/(n**2) 
+    
+    for i in range(n):
+        for j in range(n):
+            if mat[i,j]==1:
+                G_excitation.add_edge(i, j)
+                G_all.add_edge(i, j)
+            elif mat[i,j]==-1:
+                G_inhibition.add_edge(i, j)
+                G_all.add_edge(i, j)
+                
+
+    lstCycl_inhib = list(nx.simple_cycles(G_inhibition))
+    mxc_inhib, avgc_inhib = getMaxLength(lstCycl_inhib)  
+    lstCycl_exct = list(nx.simple_cycles(G_excitation))
+    mxc_exct, avgc_exct = getMaxLength(lstCycl_exct) 
+    lstCycl_all = list(nx.simple_cycles(G_all))
+    mxc_all, avgc_all = getMaxLength(lstCycl_all) 
+
+    matstat = getStat(mat)
+    totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation = matstat[0,0], matstat[0,1], matstat[0,2], matstat[0,3]
+    
+    return [ mxc_inhib, avgc_inhib, mxc_exct, avgc_exct, mxc_all, avgc_all, totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation]
+         

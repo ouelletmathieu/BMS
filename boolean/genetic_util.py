@@ -4,8 +4,9 @@ import math
 import matplotlib.pyplot as plt
 import networkx as nx
 
-from boolean.boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph
-
+from boolean.boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph, get_1d_property
+from boolean.motif_util import get_z_val_2_3
+from boolean.adv_descriptor_util import get_tau_descriptor
 
 
 def mateMat(mat1,mat2):
@@ -400,4 +401,124 @@ def randomPoint():
         return 0
     else:
         return 1
+
+
+def evaluateMotif(gen, pop, list2motif, motif2Info, list3motif, motif3Info, nwayMotif, rootNode, list2mat, list3mat):
+    """return list of 2-motif and 3-motifs z-values. See returns for the exact form of the output. 
+
+    Args:
+        gen (int): generation number
+        pop ([vec,...]): population of networks
+        list2motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+        motif2Info : Info for each 2-motifs (see method get2motif_graph())
+        list3motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+        fmotif3Info :Info for each 3-motifs (see method get3motif_graph())
+        nwayMotif ([int,...]): number of way to generate the same motif
+        rootNode ([type]): Root of the decision tree for fast motif finding (see DecisionTree)
+        list2mat ([np.array,...,]): list of 2-motif matrix 
+        list3mat ([np.array,...,]): list of 3-motif matrix
+
+    Returns:
+        [[gen]+mean2vec , [gen]+std2vec],  [[gen]+mean3vec , [gen]+std3vec]
+    """
     
+    listzvalue = list()
+    
+    for index in range(len(pop)):
+        zval = get_z_val_2_3(pop[index],list2motif,motif2Info,list3motif,motif3Info, nwayMotif, rootNode, list2mat, list3mat)
+        listzvalue.append(zval)
+        
+    listOf2motif, listOf3motif = [], []
+    nb = len(listzvalue)
+    
+    for i in range(len(listzvalue)):
+        listOf2motif.append(listzvalue[i][0])
+        listOf3motif.append(listzvalue[i][1])
+
+    mean2vec, std2vec, mean3vec, std3vec  = [0]*len(listOf2motif[0]), [0]*len(listOf2motif[0]), [0]*len(listOf3motif[0]), [0]*len(listOf3motif[0])
+    maxdyn = 0
+
+    for n in range(nb):    
+        if listOf2motif[n][-1] > maxdyn:
+            maxdyn=listOf2motif[n][-1]; 
+            
+        for i in range(len(mean2vec)):
+            mean2vec[i] += listOf2motif[n][i]/nb
+        for i in range(len(mean3vec)):
+            mean3vec[i] += listOf3motif[n][i]/nb
+
+    for n in range(nb):
+        for i in range(len(mean2vec)):
+            std2vec[i] += ((listOf2motif[n][i] - mean2vec[i])**2)/nb
+        for i in range(len(mean3vec)):
+            std3vec[i] += ((listOf3motif[n][i] - mean3vec[i])**2)/nb
+
+    for i in range(len(mean2vec)):
+            std2vec[i] = math.pow(std2vec[i], 0.5)
+    for i in range(len(mean2vec)):
+            std3vec[i] = math.pow(std3vec[i], 0.5)
+    
+    
+    return [[gen]+mean2vec , [gen]+std2vec],  [[gen]+mean3vec , [gen]+std3vec]
+
+
+def get_tau_avg_std(pop):
+    """formatting of tau descriptor properties for the optimization population 
+
+    Args:
+        vec : network in vector form (ie. list of element in the matrix in order starting with top left)
+
+    Returns:
+        average of : [node_pos_dumb,node_neg_dumb,node_all_dumb,node_pos_good, node_neg_good,node_all_good]
+        std of : [node_pos_dumb,node_neg_dumb,node_all_dumb,node_pos_good, node_neg_good,node_all_good]
+    """
+
+    avg,std = [0]*6,[0]*6 
+    list_tau_vec = list()
+    
+    for vec in pop:
+        tauvec = get_tau_descriptor(vec)
+        list_tau_vec.append(tauvec)
+        
+        for i, value in enumerate(tauvec):
+            avg[i]+=value/len(pop)
+    
+    for tauvec in list_tau_vec:
+        for i, value in enumerate(tauvec):
+            std[i]+= ((value-avg[i])**2)/len(pop)
+        
+    for i in range(6):
+        std[i] = math.sqrt(std[i])
+        
+    return avg, std  
+
+
+
+def get_1d_property_avg_std(pop):
+    """formatting of 1 dimensional properties for use in the optimization process (with a population)
+
+    Args:
+        pop : population from the optimization 
+
+    Returns:
+        average of : [ mxc_inhib, avgc_inhib, mxc_exct, avgc_exct, mxc_all, avgc_all, totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation]
+        standard deviation of : [ mxc_inhib, avgc_inhib, mxc_exct, avgc_exct, mxc_all, avgc_all, totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation]
+    """
+    avg = [0]*10
+    std = [0]*10
+    list_1d_vec = list()
+    
+    for vec in pop:
+        vec_1d = get_1d_property(vec)
+        list_1d_vec.append(vec_1d)
+        for i, value in enumerate(vec_1d):
+            avg[i]+=value/len(pop)
+    
+    for vec_1d in list_1d_vec:
+        for i, value in enumerate(vec_1d):
+            std[i]+= ((value-avg[i])**2)/len(pop)
+        
+    for i in range(6):
+        std[i] = math.sqrt(std[i])
+        
+    return avg, std
