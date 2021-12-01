@@ -215,15 +215,12 @@ def get3motif(mat, list3mat, motifInfo):
     count = [0]*len(list3mat)
  
     for sub_nodes in itertools.combinations(graphRule.nodes(),3):
-
         subg = graphRule.subgraph(sub_nodes)
         
         if nx.is_weakly_connected(subg):
             
             subgInfo = getInfoRule(  nx.adjacency_matrix(subg) )
             found = False
-
-
 
             for m in range(len(list3mat)):
                 if (subgInfo == motifInfo[m]).all() :
@@ -323,47 +320,94 @@ def getProbabilty2motifs(mat, density, nodeNb):
 
 
 
-def getZvalue3motifs(listMatGraph, MotifCount, density, nodeNb, nonConjugate_count):
-    
-    Zvalue = [0]*len(listMatGraph)
+def getZvalue3motifs(list3mat, motif_count, density, nodeNb, nonConjugate_count):
+    """get the list of z_value compared to the expectation of 3-motifs found in the null model  
 
-    for i in range(len(listMatGraph)):
-        p,var = getProbabilty3motifs(listMatGraph[i], density, nodeNb,nonConjugate_count[i])
+    Args:
+        list3mat ([np.array, ...]): list of motif matrix 
+        motif_count ([int,...]): count of each motif found in the set 
+        density (double): density of the matrix/network being analysed 
+        nodeNb (int): number of node in the matrix/network
+        nonConjugate_count ([int,...]): list of all call to the boolean.boolean_util.countNonConjugate3() function
+
+    Returns:
+        [double, ....]: list of z value for all the motifs in the same order as list3mat
+    """
+    Zvalue = [0]*len(list3mat)
+
+    for i in range(len(list3mat)):
+        p,var = getProbabilty3motifs(list3mat[i], density, nodeNb,nonConjugate_count[i])
         
-        if p==0 and MotifCount[i]==0:
+        if p==0 and motif_count[i]==0:
             Zvalue[i]=0
         else:
-            Zvalue[i]=(MotifCount[i]-p)/var
+            Zvalue[i]=(motif_count[i]-p)/var
     
     return Zvalue
 
 
-def getZvalue2motifs(listMatGraph, MotifCount, density, nodeNb):
+def getZvalue2motifs(list2mat, motif_count, density, nodeNb):
+    """get the list of z_value compared to the expectation of 2-motifs found in the null model  
+
+    Args:
+        list2mat ([np.array, ...]): list of motif matrix 
+        motif_count ([int,...]): count of each motif found in the set 
+        density (double): density of the matrix/network being analysed 
+        nodeNb (int): number of node in the matrix/network
+
+    Returns:
+        [double, ....]: list of z value for all the motifs in the same order as list3mat
+    """   
+    Zvalue = [0]*len(list2mat)
     
-    Zvalue = [0]*len(listMatGraph)
-    
-    for i in range(len(listMatGraph)):
-        p,var = getProbabilty2motifs(listMatGraph[i], density, nodeNb)
-        if p==0 and MotifCount[i]==0:
+    for i in range(len(list2mat)):
+        p,var = getProbabilty2motifs(list2mat[i], density, nodeNb)
+        if p==0 and motif_count[i]==0:
             Zvalue[i]=0
         else:
-            Zvalue[i]=(MotifCount[i]-p)/var
+            Zvalue[i]=(motif_count[i]-p)/var
             
     return Zvalue
 
+    
+    """get the list of z_value compared to the expectation of 2-motifs found in the null model  
 
+    Args:
+        list2mat ([np.array, ...]): list of 2-motif matrix 
+        motif_count ([int,...]): count of each motif found in the set 
+        density (double): density of the matrix/network being analysed 
+        nodeNb (int): number of node in the matrix/network
+        
+    Returns:
+        [double, ....]: list of z value for all the motifs in the same order as list3mat
+    """   
 
 #we added list2mat, list3mat to the method (need to keep the change)
 def get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, rootNode, list2mat, list3mat):
-    
+    """return information about the network in the vec form on 2,3 motifs. See returns for the exact form of the output. 
+
+    Args:
+        vec : network in vector form (ie. list of element in the matrix in order starting with top left)
+        list2motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+        motif2Info : Info for each 2-motifs (see method get2motif_graph())
+        list3motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+        fmotif3Info :Info for each 3-motifs (see method get3motif_graph())
+        nwayMotif ([int,...]): number of way to generate the same motif
+        rootNode ([type]): Root of the decision tree for fast motif finding (see DecisionTree)
+        list2mat ([np.array,...,]): list of 2-motif matrix 
+        list3mat ([np.array,...,]): list of 3-motif matrix 
+
+    Returns:
+        [[double, ... ], [double, ... ]]: extend( list of 2-motif z-value , [density, max cycle length ] ) , extend( list of 3-motif z-value , [density, max cycle length ] )
+    """
+
     n = int(abs(math.sqrt(len(vec))))
     mat = listToArray(vec, n)
     
-    comp = getDensity(mat)
-    dyn = getMaxCycleLength(mat)
+    density = getDensity(mat)
+    max_cycle_length = getMaxCycleLength(mat)
     
     motif2Vec = get2motif(mat, list2motif, motif2Info)
-    
     motif3Vec = get3motif_tree(mat, rootNode, list3motif)
     
     r = getDensity(mat)
@@ -371,26 +415,51 @@ def get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, r
     z2value = getZvalue2motifs(list2mat, motif2Vec, r, n)
     z3value = getZvalue3motifs(list3mat, motif3Vec, r, n,nwayMotif)
     
-    return [z2value + [comp, dyn], z3value + [comp, dyn]]
+    return [z2value + [density, max_cycle_length], z3value + [density, max_cycle_length]]
 
 
 
 def just_3_motif(vec, list2motif, motif2Info, list3motif, fmotif3Info, nwayMotif, rootNode, list2mat, list3mat):
+    """Not a really usefull function that call get_z_val_2_3() and just output the 3 motifs part 
+    TODO remove that function and call get_z_val_2_3().
 
+    Args:
+        vec : network in vector form (ie. list of element in the matrix in order starting with top left)
+        list2motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+        motif2Info : Info for each 2-motifs (see method get2motif_graph())
+        list3motif ([networkX , ...]): list of graph (networkX) for each 3-motif
+        fmotif3Info :Info for each 3-motifs (see method get3motif_graph())
+        nwayMotif ([int,...]): number of way to generate the same motif
+        rootNode ([type]): Root of the decision tree for fast motif finding (see DecisionTree)
+        list2mat ([np.array,...,]): list of 2-motif matrix 
+        list3mat ([np.array,...,]): list of 3-motif matrix
+
+    Returns:
+        [double, ... ]:  extend( list of 3-motif z-value , [density, max cycle length ] )
+
+    """
     zval = get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, rootNode, list2mat, list3mat)
     return zval[1][:-2]
 
 
+def get3motif_tree(mat, rootNode, list3motif):
+    """return the count of motif for the matrix mat 
 
-def get3motif_tree(rule, rootNode, count_len):
-    
-    graphRule = constructGraph(rule)
+    Args:
+        mat ([np.array nxn]): matrix of the motif to get the count
+        rootNode ([type]): Root of the decision tree for fast motif finding (see DecisionTree)
+        list3motif ([networkX , ...]): list of graph (networkX) for each 2-motif
+
+    Returns:
+        [int,...]: count for each motifs
+    """
+    graphRule = constructGraph(mat)
     #em = iso.numerical_edge_match('weight', 1)
-    count = [0]*len(count_len)
+    count = [0]*len(list3motif)
     
     for sub_nodes in itertools.combinations(graphRule.nodes(),3):
 
-        mat = rule[np.ix_(sub_nodes,sub_nodes)]
+        mat = mat[np.ix_(sub_nodes,sub_nodes)]
         vec = [x for x in mat.flat]
         id_motif = rootNode.goToLeaf(0, vec)
 
@@ -400,7 +469,12 @@ def get3motif_tree(rule, rootNode, count_len):
     return count;    
 
 def get_tree_input_3node():
+    """Generate the input to create a 3-node decision tree
 
+    example code: 
+        motif_3_repr, all_3_motif_mat, all_3_motif_repr_nb = get_tree_input_3node()
+        mainTree = DecisionTree.constructTree(all_3_motif_mat, all_3_motif_repr_nb, all_3_motif_repr_nb)
+    """
     nodes = 3
     lenght = nodes**2
     list_1_reprentative = []
@@ -409,10 +483,8 @@ def get_tree_input_3node():
     listInfo = []
     
     for k in range(1,3**lenght):
-
         base3 =  [int(x) for x in ternaryDigit(k)]
         base3 = [0] * (lenght - len(base3)) + base3
-
     
         mat = np.zeros((nodes,nodes))
         
@@ -450,7 +522,8 @@ def get_tree_input_3node():
 
 
 class DecisionTree:
-    
+    """Allow fast finding of motifs
+    """
     def __init__(self, vec):
         self.parsed_vec = vec
         self.children_dict = dict()
@@ -460,7 +533,12 @@ class DecisionTree:
     
     @staticmethod
     def constructTree(list_vec, list_id, list_data):
-        
+        """Construct the tree. Can be used as
+
+        example code: 
+            motif_3_repr, all_3_motif_mat, all_3_motif_repr_nb = get_tree_input_3node()
+            mainTree = DecisionTree.constructTree(all_3_motif_mat, all_3_motif_repr_nb, all_3_motif_repr_nb)
+        """
         if len(list_vec)!=len(list_id) or len(list_id)!=len(list_data):
             print("not the same size")
             raise ValueError("should be the same size")
@@ -503,10 +581,10 @@ class DecisionTree:
             self.children_dict[nextVal] = newNode
             
             
-    #return id, data if node is a leaf, return -2 if not found or not a leaf
     def goToLeaf(self,active_id, vec):
-        
-        
+        """return id, data if node is a leaf, return -2 if not found or not a leaf. See get3motif_tree for use. 
+
+        """
         nextVal = int(vec[active_id])
         
         #check if leaf
