@@ -9,8 +9,6 @@ import networkx.algorithms.isomorphism as iso
 from boolean.boolean_util import getDensity, getMaxCycleLength
 from boolean.boolean_util import getInfoRule, checkIfConjugate3, checkIfConjugate2, constructGraph, listToArray, countNonConjugate2
 
-
-
 def checkConnected2node(mat):
     """Test if 2 node are connected together
     """
@@ -84,7 +82,6 @@ def checkConnected3node(mat):
     
     return False
 
-
 def getAllMotif_3nodes_adjacency():
     """return all the potential rule matrix for 3 motifs. The process is slow.
     TODO make it faster 
@@ -138,8 +135,6 @@ def getAllMotif_3nodes_adjacency():
     print("number of accepted motif = ", len(listmat))
     return listmat, listInfo
 
-
-
 def get2motif_graph():
     """Create networkX graph of all 2 node motifs
     Returns:
@@ -153,7 +148,6 @@ def get2motif_graph():
         
     return listgraph, listInfo, listmat, listInfo
         
-
 def get3motif_graph():
     """Create networkX graph of all 3 node motifs
     Returns:
@@ -166,8 +160,7 @@ def get3motif_graph():
         listgraph.append(constructGraph(mat))
         
     return listgraph, listInfo, listmat, listInfo
-        
-    
+          
 def get2motif(mat, list2mat, motifInfo):
     """get the count of 2 motif in the network mat. Slow way that do not use a decision tree
 
@@ -194,7 +187,6 @@ def get2motif(mat, list2mat, motifInfo):
                     break
                 
     return count;
-
 
 def get3motif(mat, list3mat, motifInfo):
     """get the count of 3 motif in the network mat. Slow way that do not use a decision tree
@@ -233,8 +225,6 @@ def get3motif(mat, list3mat, motifInfo):
                 
     return count
 
-
-
 def ternaryDigit (n):
     if n == 0:
         return '0'
@@ -249,7 +239,6 @@ def nCr(n,r):
     """
     f = math.factorial
     return f(n) / f(r) / f(n-r)
-
 
 def getProbabilty3motifs(mat, density, nodeNb, nwayMotif):
     """This function DO NOT gives the probability but gives the expected count of a 3 nodes motif for a random networks 
@@ -283,7 +272,6 @@ def getProbabilty3motifs(mat, density, nodeNb, nwayMotif):
     
     return totalProb, standardDeviation
 
-
 def getProbabilty2motifs(mat, density, nodeNb):
     """This function DO NOT gives the probability but gives the expected count of a 2 nodes motif for a random networks 
     TODO change the name
@@ -316,8 +304,6 @@ def getProbabilty2motifs(mat, density, nodeNb):
     
     return totalProb, standardDeviation
 
-
-
 def getZvalue3motifs(list3mat, motif_count, density, nodeNb, nonConjugate_count):
     """get the list of z_value compared to the expectation of 3-motifs found in the null model  
 
@@ -342,7 +328,6 @@ def getZvalue3motifs(list3mat, motif_count, density, nodeNb, nonConjugate_count)
             Zvalue[i]=(motif_count[i]-p)/var
     
     return Zvalue
-
 
 def getZvalue2motifs(list2mat, motif_count, density, nodeNb):
     """get the list of z_value compared to the expectation of 2-motifs found in the null model  
@@ -415,8 +400,6 @@ def get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, r
     
     return [z2value + [density, max_cycle_length], z3value + [density, max_cycle_length]]
 
-
-
 def just_3_motif(vec, list2motif, motif2Info, list3motif, fmotif3Info, nwayMotif, rootNode, list2mat, list3mat):
     """Not a really usefull function that call get_z_val_2_3() and just output the 3 motifs part 
     TODO remove that function and call get_z_val_2_3().
@@ -439,7 +422,6 @@ def just_3_motif(vec, list2motif, motif2Info, list3motif, fmotif3Info, nwayMotif
     zval = get_z_val_2_3(vec,list2motif,motif2Info,list3motif,fmotif3Info, nwayMotif, rootNode, list2mat, list3mat)
     return zval[1][:-2]
 
-
 def get3motif_tree(mat, rootNode, list3motif):
     """return the count of motif for the matrix mat 
 
@@ -454,12 +436,11 @@ def get3motif_tree(mat, rootNode, list3motif):
     graphRule = constructGraph(mat)
     #em = iso.numerical_edge_match('weight', 1)
     count = [0]*len(list3motif)
-    
-    for sub_nodes in itertools.combinations(graphRule.nodes(),3):
 
-        mat = mat[np.ix_(sub_nodes,sub_nodes)]
-        vec = [x for x in mat.flat]
-        id_motif = rootNode.goToLeaf(0, vec)
+    for sub_nodes in itertools.combinations(graphRule.nodes(),3):
+        submat = mat[np.ix_(sub_nodes,sub_nodes)]
+        subvec = [x for x in submat.flat]
+        id_motif = rootNode.goToLeaf(0, subvec)
 
         if id_motif != -2:
             count[id_motif[0]]+=1
@@ -517,7 +498,6 @@ def get_tree_input_3node():
     print("finish")
     
     return list_1_reprentative, all_matrix, all_matrix_repr_nb
-
 
 class DecisionTree:
     """Allow fast finding of motifs

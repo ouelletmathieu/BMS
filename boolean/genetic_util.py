@@ -3,7 +3,7 @@ import numpy as np
 import math
 import matplotlib.pyplot as plt
 import networkx as nx
-
+import pandas as pd
 from boolean.boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph, get_1d_property
 from boolean.motif_util import get_z_val_2_3
 from boolean.adv_descriptor_util import get_tau_descriptor
@@ -88,7 +88,6 @@ def mutateMat(p, mat1):
     else:
         return mat1    
     
-
 def selTournamentMathieu(individuals, k, tournsize, maxTry, toolbox):
     """set up a tournament for the 
     TODO finish to write this doc 
@@ -145,17 +144,6 @@ def selTournamentMathieu(individuals, k, tournsize, maxTry, toolbox):
     
     return selected
 
-
-def printPareto(pop):
-    """Fast plot of the population pop
-    """
-    #TODO only work in notebook
-    p = np.array([ind.fitness.values for ind in pop])
-    plt.scatter(p[:, 1], p[:, 0], marker="o", s=24, label="Final Population")
-    plt.show()
-
-
-
 def evalFitness(individual):
     """Evaluate the fitness for an individual. The fitness is 2 dimensional with 
     [0]: Max cycke length 
@@ -168,7 +156,6 @@ def evalFitness(individual):
     mat = listToArray(individual,n)
     return getMaxCycleLength(mat)+anti_overlap1, getDensity(mat)+anti_overlap2
 
-
 def evalFitness1D(individual):
     """Evaluate the fitness for an individual. The fitness is 2 dimensional with 
     [0]: Max cycke length 
@@ -177,7 +164,6 @@ def evalFitness1D(individual):
     mat = listToArray(individual,n)
 
     return getMaxCycleLength(mat),
-
 
 def mateList(ind1, ind2):
     """Mate the two individual 1 and 2 and output the offspring as individual 1 and 2 
@@ -211,7 +197,6 @@ def mutateList(individual, prob=1):
     for i in range(n):
         individual[i] = res[i]
     return individual,
-
 
 def mating_1_cycle(mat1, mat2):
     """Internal method that mate two matrix mat1 and mat2 keeping the physical cycle 
@@ -313,8 +298,6 @@ def mating_1_cycle(mat1, mat2):
                 
         return mat3       
         
-
-
 def mate_cycle(mat1, mat2):
     """Use the method mating_1_cycle many time to find an adequate mating. 
 
@@ -358,7 +341,6 @@ def mate_cycle(mat1, mat2):
         toReturn[1] = generateRandomValidNetwork(len(mat1), r2)
     return toReturn[0], toReturn[1]
        
-
 def mateList2(ind1, ind2):
     """Mate the two individual 1 and 2 and output the offspring as individual 1 and 2 using the 
     two type of mating 
@@ -386,7 +368,6 @@ def mateList2(ind1, ind2):
         
     return ind1, ind2    
 
-
 def randomPoint():
     """random -1,0,1 with equal property for the simulation (initial individuals)
 
@@ -401,7 +382,6 @@ def randomPoint():
         return 0
     else:
         return 1
-
 
 def evaluateMotif(gen, pop, list2motif, motif2Info, list3motif, motif3Info, nwayMotif, rootNode, list2mat, list3mat):
     """return list of 2-motif and 3-motifs z-values. See returns for the exact form of the output. 
@@ -461,7 +441,6 @@ def evaluateMotif(gen, pop, list2motif, motif2Info, list3motif, motif3Info, nway
     
     return [[gen]+mean2vec , [gen]+std2vec],  [[gen]+mean3vec , [gen]+std3vec]
 
-
 def get_tau_avg_std(pop):
     """formatting of tau descriptor properties for the optimization population 
 
@@ -492,8 +471,6 @@ def get_tau_avg_std(pop):
         
     return avg, std  
 
-
-
 def get_1d_property_avg_std(pop):
     """formatting of 1 dimensional properties for use in the optimization process (with a population)
 
@@ -522,3 +499,72 @@ def get_1d_property_avg_std(pop):
         std[i] = math.sqrt(std[i])
         
     return avg, std
+
+def get_pareto(list_fitness_associated, weights, front_toKeep = 1, min_density=0):
+    """Create the pareto front for a 2d problem doesn't work in higher dimension. weights can be adjusted to allow minimization or maximization. 
+
+    Args:
+        list_fitness_associated ([[double, double, double], [d,d,d], ... ]): each element is [density, fitness1, fitness2] 
+        weights ([double,double]): Indicate if the variable need to be minimized or maximised 
+        front_toKeep (int, optional): number of layer of pareto front to keep. 1 keep all non dominated solution. Defaults to 1.
+        min_density (int, optional): minimal density to consider. Defaults to 0.
+
+    Returns:
+        [[double, double, double], [d,d,d], ... ]: A subset of list_fitness_associated that are in the first front_toKeep pareto front
+    """
+    pareto = list()
+    
+    for i, ind1 in enumerate(list_fitness_associated):
+        
+        dominated_nb = 0
+        if ind1[0]>min_density:
+            for ind2 in list_fitness_associated:
+
+                if ind1 != ind2:
+                    if weights[0]<0:
+                        if ind2[0] <= ind1[0]: 
+                            if weights[1] < 0:
+                                if ind2[1] <= ind1[1]:
+                                    dominated_nb+=1
+
+                            if weights[1] > 0:
+                                if ind2[1] >= ind1[1]:
+                                    dominated_nb+=1
+
+                    if weights[0]>0:
+                        if ind2[0] >= ind1[0]: 
+                            if weights[1]<0:
+                                if ind2[1] <= ind1[1]:
+                                    dominated_nb+=1
+
+                            if weights[1] > 0:
+                                if ind2[1] >= ind1[1]:
+                                    dominated_nb+=1
+
+            if dominated_nb<front_toKeep:        
+                pareto.append(list(ind1))
+
+    return pareto
+
+def get_pareto_from_pop_file(path, weights):
+    """get  the pareto front for a 2d problem doesn't work in higher dimension. weights can be adjusted to allow minimization or maximization. 
+
+    Args:
+        path (file): path of the file
+        weights ([double, double]): Indicate if the variable need to be minimized or maximised 
+
+    Returns:
+        [[double, double, double], [d,d,d], ... ]: A subset of list_fitness_associated that are in the pareto front. Each element is [density, fitness1, fitness2] 
+    """    
+    df = pd.read_csv(path)
+    list_fitness = list()
+    
+    max_cycle = df["max_cycle"]
+    density = df["density"]
+    
+    for i in range(len(max_cycle)):
+        mx_cyc = round(max_cycle[i])
+        list_fitness.append([max_cycle[i],density[i]])
+   
+    return get_pareto(list_fitness, weights)
+    

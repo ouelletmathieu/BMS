@@ -66,9 +66,6 @@ T4 = [T4_1,T4_2,T4_3,T4_4,T4_5,T4_6,T4_7,T4_8,T4_9,T4_10,T4_11,T4_12,T4_13,
       T4_14,T4_15,T4_16,T4_17,T4_18,T4_19,T4_20,T4_21,T4_22,T4_23,T4_24]
 
 T4m = [ np.transpose(mat) for mat in T4]
-
-
-
     
 def constructGraph(adjacencyMatrix):
     """construct a networkx digraph given an adjacencyMatrix
@@ -101,25 +98,18 @@ def constructGraph(adjacencyMatrix):
                 G.add_edge(i, j, weight=1)   
     return G
 
-
 def setRandomInitialState(graph):
     """
     create a random initial state for the graph graph (0 or 1 on each node)
     """
     for n in graph:
-        graph.nodes[n]["state"]= random.randrange(2)
-
-    
+        graph.nodes[n]["state"]= random.randrange(2)  
 
 def setInitialState(graph, vector):
     """set the initial state of the graph. Vector is indexed by the index of the node.
     """
     for n in graph:
         graph.nodes[n]["state"]= vector[n]
-        
-
-
-
 
 def getNextState(graph):
     """This method generate the next state for a given graph for an initial state. 
@@ -155,8 +145,6 @@ def getNextState(graph):
             graph.nodes[n]["state"]=1
             
     return [graph.nodes[n]["state"] for n in range(graph.order())]
-
-
 
 def getGraphState(graph):
     """Create a graph that represent the state space of the network
@@ -198,8 +186,6 @@ def getGraphState(graph):
         StateG.add_edge(initialRes,finalRes)
    
     return StateG, intialValue, finalValue
-
-
 
 def getAllRule(mat, nb):
     """This method generate all the possible rule for a given connection matrices. 
@@ -257,7 +243,6 @@ def getAllRule(mat, nb):
 
     return matList
 
-
 def getMaxLength(listOfList):
     """Return the maximum and the average of the lenth of the list inside a list 
     i.e. [ [1,1,1,1], [1,1], [1]] return max = 4 and mean = (4+2+1)/3
@@ -279,8 +264,6 @@ def getMaxLength(listOfList):
         return maximum, mean/len(listOfList)
     
     return 0,0
-
-
 
 def getLegalMatrixList(size,nbKeep):
     """This method generate all the legal matrix representing connection for a number of node. 
@@ -322,9 +305,6 @@ def getLegalMatrixList(size,nbKeep):
             
     return listMatrix
 
-
-
-
 def getInfoRule(mat):
     """return the number of  (non diag. exct.,  non diag. inhib.,  diag. exct.,  diag. inhib.)  connections 
 
@@ -359,8 +339,6 @@ def getInfoRule(mat):
 
     return np.array([nondiagPlus, nondiagMinus, diagPlus, diagMinus])
 
-
-
 def getStat(rule):
     """return the number of  (inhibition,  excitation,  diag. -inhibition,  diag. -excitation)  connections 
 
@@ -389,10 +367,6 @@ def getStat(rule):
 
     return np.matrix([totalInhibition, totalExcitation, totalAutoInhibition, totalAutoExcitation])
         
-    
-"""
-
-"""
 def MatrixDistance(mat1, mat2):
     """compute the matrix distance given by sum of +1 if mat1[i][j] != mat2[i][j]
 
@@ -406,9 +380,6 @@ def MatrixDistance(mat1, mat2):
             if(mat1[i,j]!=mat2[i,j]):
                 dist = dist+1 
     return dist
-
-
-
 
 def AddRuleSpace(ruleGraph, mat, value, value2, value3, value4, dist=1):
     """This method is used to populate a graph that represent the relation in the space of rules
@@ -452,10 +423,6 @@ def AddRuleSpace(ruleGraph, mat, value, value2, value3, value4, dist=1):
         else :
             raise TypeError("can only be of size 3 or 4")
 
-
-
-
-
 def checkIfConjugate2(mat1, mat2, distance):
     """Check if two matrix of dimension 2 only difer from n=distance terms considering isomorphism. 
 
@@ -472,7 +439,6 @@ def checkIfConjugate2(mat1, mat2, distance):
     
     return False
 
-
 def checkIfConjugate3(mat1, mat2, distance):  
     """Check if two matrix of dimension 3 only difer from n=distance terms considering isomorphism. 
 
@@ -488,7 +454,6 @@ def checkIfConjugate3(mat1, mat2, distance):
             return True
     
     return False
-
 
 def checkIfConjugate4(mat1, mat2, distance):
     """Check if two matrix of dimension 4 only difer from n=distance terms considering isomorphism. 
@@ -510,7 +475,6 @@ def checkIfConjugate4(mat1, mat2, distance):
             return True
     
     return False
-
 
 def countNonConjugate2(mat1):
     """Count the number of matrix that are different to this one when conjugating it for dimension 2
@@ -559,8 +523,6 @@ def countNonConjugate3(mat1):
             listmat.append(transformed)
 
     return listmat
-        
-
 
 def contractGraph(G, distance, func):
     """Contract two nodes in graph G if the function between the two nodes are true 
@@ -620,8 +582,6 @@ def isValidRule(mat):
 
     return True
 
-
-
 def getMaxCycleLength(mat):
     """Return the maximum cycle length for the rule mat
 
@@ -638,20 +598,6 @@ def getMaxCycleLength(mat):
     
     return maxcycle
 
-
-def getDensity(mat):
-    """Return the density 
-    """    
-    n = mat.shape[0]
-    connNb = 0
-    
-    for i in range(n):
-        for j in range(n):
-            if mat[i,j]!=0:
-                connNb+=1
-    
-    return connNb/(n**2)
-
 #TODO DUPLICATE 
 def getDensity(mat):
     n = mat.shape[0]
@@ -661,7 +607,6 @@ def getDensity(mat):
             if mat[i,j]!=0:
                 tot+=1
     return tot/(n**2)
-
     
 def generateRandomValidNetwork(size):
     n = size
@@ -708,12 +653,10 @@ def generateRandomValidNetwork(size, density):
         
     return newMat;
 
-
 def listToArray(listMat, n):
     a_1d_array = np.array(listMat)
     reshaped_to_2d = np.reshape(a_1d_array, (n, n))
     return reshaped_to_2d
-
 
 def arrayToList(mat):
     flatten_array = mat.flatten()
@@ -746,9 +689,6 @@ def getAverage1To1Distance(population):
     
     return total/(len(population)-1)
 
-
-
-
 def is_same_dynamic(list_dyn_couple, init_vec, final_vec):
     for couple in list_dyn_couple:
         val1 = couple[0]
@@ -758,7 +698,6 @@ def is_same_dynamic(list_dyn_couple, init_vec, final_vec):
             return False
     
     return True
-
 
 def get_1d_property(vec):
     """formatting of 1 dimensional properties for a network (vec)

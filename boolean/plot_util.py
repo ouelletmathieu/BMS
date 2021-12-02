@@ -15,14 +15,10 @@ colorRed = (218/255.0, 114/255.0, 126/255.0, 1)
 colorVec = [colorBlue,colorOrange,colorRed ,colorGrey, colordarkRed]
 colorMain = [colorBlue,colorOrange,colorRed ]
 
-
 markerVec = ["^", "s", "X", "o", "D"]
 
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
-
-
-
 
 
 def get_dataframe(dataframe, varx, vary, cond_col = 'None', min_col = 0):
@@ -74,7 +70,6 @@ def get_dataframe(dataframe, varx, vary, cond_col = 'None', min_col = 0):
     
     return dict_y, dict_count, list_value_x, list_value_y
     
-
 def get_average_x_y(dataframe, varx, vary, min_count = 0, SEM = False , minx = float('-inf'), cond_col = 'None', min_col = 0):
     """return the average of vary in the dataframe for all unique varx in the dataframe
 
@@ -125,7 +120,6 @@ def get_average_x_y(dataframe, varx, vary, min_count = 0, SEM = False , minx = f
     
     return x, y, std
 
-
 def get_quartile_x_y(dataframe, varx, vary, quartile = 95 , min_count = 0, cond_col = 'None', min_col = 0):
     """allow to output the value at quartile% when sorted for all possible varx
 
@@ -159,7 +153,6 @@ def get_quartile_x_y(dataframe, varx, vary, quartile = 95 , min_count = 0, cond_
 
     return x, y
 
-
 def get_density_x_y(dataframe, varx, cond_col = 'None', min_col = 0, check_cond = True, toPrint = False):
     """get the density of varx in the sample
 
@@ -172,15 +165,13 @@ def get_density_x_y(dataframe, varx, cond_col = 'None', min_col = 0, check_cond 
         toPrint (bool, optional): [description]. If True print each row
 
     Returns:
-        [type]: [description]
+        x, y, dict_count, total
     """
 
     dict_count = dict()
     total = 0
 
-    x = list()
-    y = list()
-    
+    x,y = list(), list()
     
     list_xrow = dataframe[varx].to_list()
     if cond_col!='None':
@@ -214,3 +205,14 @@ def get_density_x_y(dataframe, varx, cond_col = 'None', min_col = 0, check_cond 
         y.append(value/total)
     
     return x, y, dict_count, total
+
+def get_all(dataframe, varx, vary):
+    
+    x, y = list(), list()
+    
+    for index, row in dataframe.iterrows():
+
+        x.append(row[varx])
+        y.append(row[vary])
+        
+    return x, y

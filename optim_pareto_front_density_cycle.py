@@ -1,10 +1,9 @@
-
 import random
 import networkx as nx
 import os
 from boolean.boolean_util import generateRandomValidNetwork, arrayToList, countNonConjugate3, getNbSame, get_1d_property
 from boolean.motif_util import DecisionTree, get_tree_input_3node, get3motif_graph, get2motif_graph
-from boolean.genetic_util import randomPoint, evalFitness, mateList2, mutateList, distanceBetweenList, printPareto, evaluateMotif, get_tau_avg_std, get_1d_property_avg_std
+from boolean.genetic_util import randomPoint, evalFitness, mateList2, mutateList, distanceBetweenList, evaluateMotif, get_tau_avg_std, get_1d_property_avg_std
 from boolean.adv_descriptor_util import get_tau_descriptor
 import networkx as nx
 import numpy as np
@@ -17,31 +16,45 @@ import os
 from multiprocessing import Pool
 from datetime import datetime
 import csv
- 
+import matplotlib.pyplot as plt
+
+#############################################
+#                Parameters                 #
+#############################################
+
+nNode = 7           #number of nodes 
+npop = 600          #population for each generation
+offspingSize = 400  #number of offspring generated at each generation 
+MUTENTRY = 0.02     #probabiltiy of mutation per entry in the matrix 
+maxGen = 300        #max generation for each optimization process 
+delta_gen = 50      #number of generation between the data output
+maxOptim = 500      #number of run of the full optim process to do
+PROCESS = 10        #number of core used for the optimization 
+adding_random = 600 #random element added each generation inside the pool (help to keep more diversity) 
+file_path = "./data_example/pareto_density_cycle/"      #file path to store the result
+
+#register the functions to use for the optimization process
+toolbox = base.Toolbox() #toolbox for optimization from deap 
+creator.create("Fitness", base.Fitness, weights=(1.0, -1.0))
+creator.create("Individual", list, fitness=creator.Fitness)
+
+
+toolbox.register("random", randomPoint)
+toolbox.register("attr_float", toolbox.random)
+toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_float, nNode**2)
+toolbox.register("population", tools.initRepeat, list, toolbox.individual)
+toolbox.register("evaluate", evalFitness)
+toolbox.register("mate", mateList2) 
+toolbox.register("mutate", mutateList, prob=MUTENTRY)
+toolbox.register("select", tools.selNSGA2)#,ref_points=ref_points)
+
+
 
 def main():
 
-    #############################################
-    #                Parameters                 #
-    #############################################
+    poolGen = Pool(PROCESS)
+    toolbox.register("map", poolGen.map)
 
-    nNode = 7           #number of nodes 
-    npop = 600          #population for each generation
-    offspingSize = 400  #number of offspring generated at each generation 
-    MUTENTRY = 0.02     #probabiltiy of mutation per entry in the matrix 
-    maxGen = 300        #max generation for each optimization process 
-    delta_gen = 50      #number of generation between the data output
-    maxOptim = 500      #number of run of the full optim process to do
-    PROCESS = 10        #number of core used for the optimization 
-    adding_random = 600 #random element added each generation inside the pool (help to keep more diversity) 
-    file_path = "./data_example/pareto_density_cycle/"      #file path to store the result
-
-
-    #############################################
-    #                   Code                    #
-    #############################################
-
-    
     #set up the machinery needed for motif analysis 
     list2motif, motif2Info, list2mat, list22info =  get2motif_graph()
     motif_3_repr, all_3_motif_mat, all_3_motif_repr_nb = get_tree_input_3node()
@@ -59,21 +72,7 @@ def main():
     os.makedirs(PathExcel, exist_ok=True)
 
 
-    #register the functions to use for the optimization process
-    toolbox = base.Toolbox() #toolbox for optimization from deap 
-    creator.create("Fitness", base.Fitness, weights=(1.0, -1.0))
-    creator.create("Individual", list, fitness=creator.Fitness)
-    poolGen = Pool(PROCESS)
-    toolbox.register("map", poolGen.map)
-    toolbox.register("random", randomPoint)
-    toolbox.register("attr_float", toolbox.random)
-    toolbox.register("individual", tools.initRepeat, creator.Individual, 
-        toolbox.attr_float, nNode**2)
-    toolbox.register("population", tools.initRepeat, list, toolbox.individual)
-    toolbox.register("evaluate", evalFitness)
-    toolbox.register("mate", mateList2) 
-    toolbox.register("mutate", mutateList, prob=MUTENTRY)
-    toolbox.register("select", tools.selNSGA2)#,ref_points=ref_points)
+
 
     #loop that run for each job of the otpimization process
     for indexOptim in range(maxOptim):
@@ -187,10 +186,10 @@ def main():
 
             #if population statistic need to be stored
             if g==1 or g%delta_gen==0 or g==maxGen:
-                printPareto()
+                printPareto(pop, optimPath+"pop_"+ str(g) +".pdf")
 
                 #keep information about the population 
-                motif_list_2_node, motif_list_3_node = evaluateMotif(optimPath, g, pop, list2motif, motif2Info, list3motif, motif3Info, nwayMotif, mainTree, list2mat, list3mat)
+                motif_list_2_node, motif_list_3_node = evaluateMotif(g, pop, list2motif, motif2Info, list3motif, motif3Info, nwayMotif, mainTree, list2mat, list3mat)
                 motif_2node_zvector.append(motif_list_2_node)
                 motif_3node_zvector.append(motif_list_3_node)
                 vectau, vectaustd = get_tau_avg_std(pop)
@@ -242,15 +241,13 @@ def main():
         #print motif
         motif_3_path = optimPath+'3motifs.csv'
         motif_3_path_std = optimPath+'3motifs_std.csv'
-
         motif_2_path = optimPath+'2motifs.csv'
         motif_2_path_std = optimPath+'2motifs_std.csv'
-
         motif_tau = optimPath+'tau.csv'
         motif_tau_std = optimPath+'tau_std.csv'
-
         graph_1d =  optimPath+'1d.csv'
         graph_1d_std = optimPath+'1d_std.csv'
+
 
         with open(motif_3_path, 'w', newline='') as file:
             writer = csv.writer(file)
@@ -321,6 +318,13 @@ def main():
                             "totalInhibition_std","totalExcitation_std","totalAutoInhibition_std","totalAutoExcitation_std"])
             for vec_list in vec_1d_std_list:
                 writer.writerow(vec_list)
+
+def printPareto(pop, path):
+    """Fast plot of the population pop
+    """
+    p = np.array([ind.fitness.values for ind in pop])
+    plt.scatter(p[:, 1], p[:, 0], marker="o", s=24, label="Final Population")
+    plt.savefig(path, transparent=True)
 
 
 if __name__ == "__main__":
