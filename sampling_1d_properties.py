@@ -1,8 +1,8 @@
 import random
 import networkx as nx
-import os
-from boolean.boolean_util import generateRandomValidNetwork, getGraphState, getMaxLength, getStat, constructGraph
-from boolean.print_util import print_list_file
+from boolean.boolean_util import generateRandomValidNetwork, getGraphState, getMaxLength, getStat, constructGraph, arrayToList
+from boolean.print_util import print_list_file, create_text_file
+from boolean.symm_util import get_symmetry_number
 
 def main():
     """     
@@ -27,30 +27,31 @@ def main():
     """
 
     nb_sample = 5000
-    nodeNb = 8
+    nodeNb = 7
     output_file = "./data_example/1d_properties/1d_properties_nodes_"+str(nodeNb)+".txt"
+    output_file_symmetry = "./data_example/symmetry/symmetry_random_network_nodes_"+str(nodeNb)+".txt"
 
-    file = open(output_file, 'a') 
-    header = get_header()
-    if os.stat(output_file).st_size < 10:
-        file.writelines(header)
+    file = create_text_file(output_file, get_header())
+    file_symmetry = create_text_file(output_file_symmetry, get_header_symmetry()) 
+
 
     for sample_nb in range(nb_sample):
         
         r = random.random()
-        if r<0.2:
-            r=0.2
-
+        r = r if r>0.2 else 0.2
         mat = generateRandomValidNetwork(nodeNb, r)
-        list_out = print_1d_property_file(sample_nb, mat, nodeNb, file)
+        list_out = print_1d_property_file(sample_nb, mat, nodeNb)
+        list_out_symmetry = print_symmetry_file(sample_nb, mat, nodeNb)
         print_list_file(list_out,file)
- 
+        print_list_file(list_out_symmetry,file_symmetry)
+
     file.close() 
+    file_symmetry.close() 
 
 def get_header():
     return "sample_nb,density,max_cycle,avgcycle,nb_attractor,nb_fixed_point,mxc_inhib,avgc_inhib,mxc_exct,avgc_exct,mxc_all,avgc_all,totalInhibition,totalExcitation,totalAutoInhibition,totalAutoExcitation,\n"
 
-def print_1d_property_file(id, mat, nodeNb, file):
+def print_1d_property_file(id, mat, nodeNb):
     """     
     print
     [0]:  sample_nb
@@ -69,7 +70,6 @@ def print_1d_property_file(id, mat, nodeNb, file):
     [13]: totalExcitation,
     [14]: totalAutoInhibition,
     [15]: totalAutoExcitation] 
-    
     """
 
     graph = getGraphState(constructGraph(mat))
@@ -127,9 +127,35 @@ def print_1d_property_file(id, mat, nodeNb, file):
     
     return list_out
 
+def get_header_symmetry():
+    return "n,density,max_cycle,nb_sym,nb_sym_transcient,nb_sym_cycle,ratio_sym,ratio_sym_transcient,ratio_sym_cycle,mat,\n"
 
+def print_symmetry_file(id, mat, nodeNb):
+    """print information about the symmetric properties of a matrix mat
+    print
+    [0]:  sample_nb
+    [1]:  density
+    [2]:  max_cycle
+    [5]:  nb_sym
+    [6]:  nb_sym_transcient
+    [7]:  nb_sym_cycle
+    [8]: ratio_sym
+    [9]: ratio_sym_transcient
+    [10]: ratio_sym_cycle,
+    [11]: mat,
+    """
 
+    density = 0
+    for xi in range(nodeNb):
+        for xj in range(nodeNb):
+            if mat[xi,xj]!=0:
+                density+=1
 
+    density = density/(nodeNb**2) 
+    sym_vec = get_symmetry_number(mat)
+    max_cycle = sym_vec[6]
+    list_out = [id, '%.3f'%(density), max_cycle, sym_vec[0], sym_vec[1], sym_vec[2], sym_vec[3], sym_vec[4], sym_vec[5], "\"" + str(arrayToList(mat)).replace(",",";")+ "\""]
+    return list_out
 
 if __name__ == "__main__":
     main()

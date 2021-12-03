@@ -7,7 +7,8 @@ import pandas as pd
 from boolean.boolean_util import isValidRule, listToArray, getMaxCycleLength, getDensity, arrayToList, distanceBetweenList, generateRandomValidNetwork, constructGraph, get_1d_property
 from boolean.motif_util import get_z_val_2_3
 from boolean.adv_descriptor_util import get_tau_descriptor
-
+import glob
+import os
 
 def mateMat(mat1,mat2):
     """Create two offsprings that are the complete mix of the two matrices mat1 and mat2. 
@@ -545,6 +546,7 @@ def get_pareto(list_fitness_associated, weights, front_toKeep = 1, min_density=0
                 pareto.append(list(ind1))
 
     return pareto
+
 
 def get_pareto_from_pop_file(path, weights):
     """get  the pareto front for a 2d problem doesn't work in higher dimension. weights can be adjusted to allow minimization or maximization. 
