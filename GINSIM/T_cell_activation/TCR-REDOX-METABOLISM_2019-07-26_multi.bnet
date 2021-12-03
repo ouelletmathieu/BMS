@@ -1,0 +1,137 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+ACTIVATION,       GLYCOLYSIS&!FAO&FAS&GLUTAMINOLYSIS&PPP&!ATPSyn&AP1&NFkB&NFAT
+AKT,              PIP3&PDK&TORC2
+AMPK,             !cATP_ADP&!AMP_ATP&!LKB&CAMK2 | !cATP_ADP&!AMP_ATP&LKB | !cATP_ADP&AMP_ATP
+AMP_ATP,          !cATP_ADP&!GLYCOLYSIS
+ANERGY,           !FOXO&!AP1&!NFkB&NFAT
+AP1,              FOS&cJUN
+ASK1,             !cTRX_b1
+ATPSyn,           !mCa_b1&!mROS_b1&mdH_b1 | !mCa_b1&mROS_b1&!mROS_b2&mdH_b1 | mCa_b1&!mCa_b2&!mROS_b1&mdH_b1 | mCa_b1&!mCa_b2&mROS_b1&!mROS_b2&mdH_b1
+AcetylCoA,        !mPDH&FAO&!FAS | mPDH&!FAS
+CALM,             cCa_b1&cCa_b2
+CALN,             CALM
+CAMK2,            CALM
+CBLB,             !LCK
+CD28,             CD28
+CD69,             HIF1A&NFkB
+CPT1,             !FAS
+DAG,              PLCg
+DUOX1,            PKCTH&cCa_b1
+ERK,              MEK
+ETC_b1,           1
+ETC_b2,           mQH2_Q_b1&mQH2_Q_b2&mNADH_NAD_b1&ETC_b1
+FAO,              CPT1
+FAS,              TORC1&!AMPK
+FOS,              !P38&ERK | P38
+FOXO,             !AKT&!SGK&AMPK
+FYN,              TCR
+GLUT1,            !HIF1A&cMYC | HIF1A
+GLUTAMINOLYSIS,   cMYC
+GLYCOLYSIS,       !HIF1A&cMYC | HIF1A
+GRB2,             LAT
+HIF1A,            !TORC1&!PHD | TORC1
+HPK1,             LAT
+HV1,              cROS_b1&cROS_b2
+IKK,              !PKCTH&!MAP3K11&CAMK2 | !PKCTH&MAP3K11 | PKCTH
+IL2,              AP1&NFkB&NFAT
+IP3,              PLCg
+IP3R,             !IP3&cROS_b1&cROS_b2 | IP3
+ITK,              !LCK&!ZAP70&!LAT&SLP76&!VAV1&PI3K | !LCK&!ZAP70&!LAT&SLP76&VAV1 | !LCK&!ZAP70&LAT&SLP76 | !LCK&ZAP70&SLP76 | LCK&SLP76
+IkB,              !IKK
+JNK,              MAP2K4
+KrebsCycle_b1,    !mNADH_NAD_b1&!AcetylCoA&!GLUTAMINOLYSIS&KrebsCycle_b1&KrebsCycle_b2 | !mNADH_NAD_b1&!AcetylCoA&GLUTAMINOLYSIS | !mNADH_NAD_b1&AcetylCoA | mNADH_NAD_b1&!mNADH_NAD_b2&!AcetylCoA&!GLUTAMINOLYSIS&KrebsCycle_b1&KrebsCycle_b2 | mNADH_NAD_b1&!mNADH_NAD_b2&!AcetylCoA&GLUTAMINOLYSIS | mNADH_NAD_b1&!mNADH_NAD_b2&AcetylCoA | mNADH_NAD_b1&mNADH_NAD_b2&KrebsCycle_b1&KrebsCycle_b2
+KrebsCycle_b2,    mCa_b1&mCa_b2&!mNADH_NAD_b1&!AcetylCoA&GLUTAMINOLYSIS&KrebsCycle_b1 | mCa_b1&mCa_b2&!mNADH_NAD_b1&AcetylCoA&KrebsCycle_b1 | mCa_b1&mCa_b2&mNADH_NAD_b1&!mNADH_NAD_b2&!AcetylCoA&GLUTAMINOLYSIS&KrebsCycle_b1 | mCa_b1&mCa_b2&mNADH_NAD_b1&!mNADH_NAD_b2&AcetylCoA&KrebsCycle_b1
+LAT,              ZAP70&!cROS_b1 | ZAP70&cROS_b1&!cROS_b2
+LCK,              TCR&!CD28&!SHP2 | TCR&CD28
+LKB,              LCK
+MAP2K4,           !MAP3K11&ASK1 | MAP3K11
+MAP3K11,          HPK1
+MEK,              RAF
+METABOLIC_ANERGY, GLYCOLYSIS&!FAS&KrebsCycle_b1 | GLYCOLYSIS&FAS&!GLUTAMINOLYSIS&KrebsCycle_b1
+MKK3,             ASK1
+NFAT,             CALN
+NFkB,             !cROS_b1&!IkB&PKCA | cROS_b1&!cROS_b2&!IkB&PKCA
+NOX2,             PKCTH&RAC1&cNADPH_NADP_b1&P38&ERK
+ORAI1,            STIM&!cROS_b1 | STIM&cROS_b1&!cROS_b2
+P38,              !ZAP70&MKK3 | ZAP70
+PDK,              !PIP3&PKCTH | PIP3
+PHD,              !cROS_b1&!KrebsCycle_b1 | !cROS_b1&KrebsCycle_b1&!KrebsCycle_b2 | cROS_b1&!cROS_b2&!KrebsCycle_b1 | cROS_b1&!cROS_b2&KrebsCycle_b1&!KrebsCycle_b2
+PI3K,             !CD28&SLP76&!CBLB | CD28&!SLP76&!CBLB | CD28&SLP76
+PIP3,             PI3K&!PTEN
+PKCA,             cCa_b1&cCa_b2
+PKCTH,            LCK&PDK&DAG
+PLCg,             LAT&SLP76&ITK
+PMCA,             !STIM
+PPP,              cMYC
+PTEN,             !LCK&!AKT&!cROS_b1
+PYR,              !mPDH&GLYCOLYSIS
+QUIESCENCE,       !cMYC&FOXO&!AP1&!NFkB&!NFAT
+RAC1,             !VAV1&TRPM2 | VAV1
+RAF,              RAS
+RAS,              !RASGRP&SOS | RASGRP
+RASGRP,           DAG&PKCTH
+SGK,              PDK&TORC2
+SHP2,             !LCK&!cROS_b1
+SLP76,            ZAP70&LAT
+SOS,              GRB2&RAS
+STIM,             !IP3R&cROS_b1&cROS_b2 | IP3R
+TCR,              TCR
+TORC1,            !PDK&AKT&!AMPK | PDK&!AMPK
+TORC2,            PIP3
+TRPM2,            cROS_b1&cROS_b2
+VAV1,             SLP76&ITK
+ZAP70,            CD28&!LCK&FYN&!SHP2&!cROS_b1 | CD28&!LCK&FYN&!SHP2&cROS_b1&!cROS_b2 | CD28&LCK&!FYN&!SHP2&!cROS_b1 | CD28&LCK&!FYN&!SHP2&cROS_b1&!cROS_b2 | CD28&LCK&FYN&!cROS_b1 | CD28&LCK&FYN&cROS_b1&!cROS_b2
+cATP_ADP,         GLYCOLYSIS
+cCa_b1,           !PMCA | PMCA&cCa_b1&cCa_b2
+cCa_b2,           !TRPM2&!PMCA&ORAI1&IP3R&cCa_b1 | TRPM2&!PMCA&IP3R&cCa_b1
+cGPX_b1,          !cROS_b1&!cGSH_GSSG_b1&cGPX_b1&cGPX_b2 | !cROS_b1&cGSH_GSSG_b1 | cROS_b1&!cROS_b2&!cGSH_GSSG_b1&cGPX_b1&cGPX_b2 | cROS_b1&!cROS_b2&cGSH_GSSG_b1 | cROS_b1&cROS_b2&cGPX_b1&cGPX_b2
+cGPX_b2,          !cROS_b1&cGSH_GSSG_b1&cGSH_GSSG_b2&cGPX_b1 | cROS_b1&!cROS_b2&cGSH_GSSG_b1&cGSH_GSSG_b2&cGPX_b1
+cGR_b1,           !cNADPH_NADP_b1&cGR_b1&cGR_b2 | cNADPH_NADP_b1
+cGR_b2,           cNADPH_NADP_b1&cGSH_GSSG_b1&cGSH_GSSG_b2&cGR_b1
+cGSH_GSSG_b1,     !cGSH_GSSG_b1&cGR_b1 | cGSH_GSSG_b1&!cGSH_GSSG_b2&cGR_b1 | cGSH_GSSG_b1&cGSH_GSSG_b2
+cGSH_GSSG_b2,     cGSH_GSSG_b1&cGR_b1&!cGPX_b1
+cJUN,             cTRX_b1&JNK
+cMYC,             TORC1&ERK
+cNADPH_NADP_b1,   !mShuttle&!cNADPH_NADP_b1&!GLUTAMINOLYSIS&PPP | !mShuttle&!cNADPH_NADP_b1&GLUTAMINOLYSIS | !mShuttle&cNADPH_NADP_b1&!cNADPH_NADP_b2&!GLUTAMINOLYSIS&PPP | !mShuttle&cNADPH_NADP_b1&!cNADPH_NADP_b2&GLUTAMINOLYSIS | !mShuttle&cNADPH_NADP_b1&cNADPH_NADP_b2 | mShuttle
+cNADPH_NADP_b2,   !mShuttle&cNADPH_NADP_b1&GLUTAMINOLYSIS&PPP | mShuttle&cNADPH_NADP_b1&!GLUTAMINOLYSIS&PPP | mShuttle&cNADPH_NADP_b1&GLUTAMINOLYSIS
+cPRX,             !LCK&cTRX_b1 | LCK&!cROS_b1&cTRX_b1 | LCK&cROS_b1&!cROS_b2&cTRX_b1
+cROS_b1,          !NOX2&!DUOX1&!mROS_b1&!cROS_b1&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&!cGR_b1&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&cGR_b2&!cGPX_b1 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2 | !NOX2&!DUOX1&!mROS_b1&!cROS_b1&cGR_b1&cGR_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&!cGR_b1&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&!cGPX_b1 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2 | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&cROS_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&!cGR_b1&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&cGR_b2&!cGPX_b1 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGR_b1&cGR_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&!cGR_b1&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&!cGR_b2&cGPX_b1&cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&!cGPX_b1 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2 | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGR_b1&cGR_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&cROS_b2 | !NOX2&!DUOX1&mROS_b1&mROS_b2 | !NOX2&DUOX1&!mROS_b1&!cROS_b1&!cGPX_b1 | !NOX2&DUOX1&!mROS_b1&!cROS_b1&cGPX_b1&!cGPX_b2 | !NOX2&DUOX1&!mROS_b1&!cROS_b1&cGPX_b1&cGPX_b2&!cPRX | !NOX2&DUOX1&!mROS_b1&cROS_b1&!cROS_b2&!cGPX_b1 | !NOX2&DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGPX_b1&!cGPX_b2 | !NOX2&DUOX1&!mROS_b1&cROS_b1&!cROS_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&DUOX1&!mROS_b1&cROS_b1&cROS_b2 | !NOX2&DUOX1&mROS_b1&!mROS_b2&!cROS_b1&!cGPX_b1 | !NOX2&DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGPX_b1&!cGPX_b2 | !NOX2&DUOX1&mROS_b1&!mROS_b2&!cROS_b1&cGPX_b1&cGPX_b2&!cPRX | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&!cGPX_b1 | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGPX_b1&!cGPX_b2 | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGPX_b1&cGPX_b2&!cPRX | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&cROS_b2 | !NOX2&DUOX1&mROS_b1&mROS_b2 | NOX2&!mROS_b1&!cROS_b1&!cGPX_b1 | NOX2&!mROS_b1&!cROS_b1&cGPX_b1&!cGPX_b2 | NOX2&!mROS_b1&!cROS_b1&cGPX_b1&cGPX_b2&!cPRX | NOX2&!mROS_b1&cROS_b1&!cROS_b2&!cGPX_b1 | NOX2&!mROS_b1&cROS_b1&!cROS_b2&cGPX_b1&!cGPX_b2 | NOX2&!mROS_b1&cROS_b1&!cROS_b2&cGPX_b1&cGPX_b2&!cPRX | NOX2&!mROS_b1&cROS_b1&cROS_b2 | NOX2&mROS_b1&!mROS_b2&!cROS_b1&!cGPX_b1 | NOX2&mROS_b1&!mROS_b2&!cROS_b1&cGPX_b1&!cGPX_b2 | NOX2&mROS_b1&!mROS_b2&!cROS_b1&cGPX_b1&cGPX_b2&!cPRX | NOX2&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&!cGPX_b1 | NOX2&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGPX_b1&!cGPX_b2 | NOX2&mROS_b1&!mROS_b2&cROS_b1&!cROS_b2&cGPX_b1&cGPX_b2&!cPRX | NOX2&mROS_b1&!mROS_b2&cROS_b1&cROS_b2 | NOX2&mROS_b1&mROS_b2
+cROS_b2,          !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&cGR_b1&cGR_b2&!cGPX_b1&!cPRX | !NOX2&!DUOX1&!mROS_b1&cROS_b1&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cGR_b1&!cGPX_b1&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cGR_b1&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&cGR_b1&!cGR_b2&!cGPX_b1&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&cGR_b1&!cGR_b2&cGPX_b1&!cGPX_b2&cTR_b1&cTR_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&cGR_b1&cGR_b2&!cGPX_b1&!cPRX | !NOX2&!DUOX1&mROS_b1&!mROS_b2&cROS_b1&cGR_b1&cGR_b2&cGPX_b1&!cGPX_b2&!cPRX | !NOX2&!DUOX1&mROS_b1&mROS_b2&cROS_b1 | !NOX2&DUOX1&!mROS_b1&cROS_b1&!cGPX_b1&!cPRX | !NOX2&DUOX1&!mROS_b1&cROS_b1&cGPX_b1&!cGPX_b2&!cPRX | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&!cGPX_b1&!cPRX | !NOX2&DUOX1&mROS_b1&!mROS_b2&cROS_b1&cGPX_b1&!cGPX_b2&!cPRX | !NOX2&DUOX1&mROS_b1&mROS_b2&cROS_b1 | NOX2&!mROS_b1&cROS_b1&!cGPX_b1&!cPRX | NOX2&!mROS_b1&cROS_b1&cGPX_b1&!cGPX_b2&!cPRX | NOX2&mROS_b1&!mROS_b2&cROS_b1&!cGPX_b1&!cPRX | NOX2&mROS_b1&!mROS_b2&cROS_b1&cGPX_b1&!cGPX_b2&!cPRX | NOX2&mROS_b1&mROS_b2&cROS_b1
+cTRX_b1,          !cROS_b1 | cROS_b1&!cROS_b2&!cTRX_b1&cTR_b1 | cROS_b1&!cROS_b2&cTRX_b1&!cTRX_b2&cTR_b1 | cROS_b1&!cROS_b2&cTRX_b1&cTRX_b2 | cROS_b1&cROS_b2&cTRX_b1&cTRX_b2
+cTRX_b2,          !cROS_b1&cTRX_b1&cTR_b1
+cTR_b1,           !cNADPH_NADP_b1&cTR_b1&cTR_b2 | cNADPH_NADP_b1
+cTR_b2,           cNADPH_NADP_b1&cNADPH_NADP_b2&cTRX_b1&cTRX_b2&cTR_b1
+mATP_ADP,         ATPSyn
+mCa_b1,           !mCa_b1&cCa_b1 | mCa_b1&!mCa_b2&cCa_b1 | mCa_b1&mCa_b2
+mCa_b2,           mCa_b1&cCa_b1&cCa_b2
+mGPX_b1,          !mROS_b1&!mGSH_GSSG_b1&mGPX_b1&mGPX_b2 | !mROS_b1&mGSH_GSSG_b1 | mROS_b1&!mROS_b2&!mGSH_GSSG_b1&mGPX_b1&mGPX_b2 | mROS_b1&!mROS_b2&mGSH_GSSG_b1 | mROS_b1&mROS_b2&mGPX_b1&mGPX_b2
+mGPX_b2,          !mROS_b1&mGSH_GSSG_b1&mGSH_GSSG_b2&mGPX_b1 | mROS_b1&!mROS_b2&mGSH_GSSG_b1&mGSH_GSSG_b2&mGPX_b1
+mGR_b1,           !mNADPH_NADP_b1&mGR_b1&mGR_b2 | mNADPH_NADP_b1
+mGR_b2,           mGSH_GSSG_b1&mGSH_GSSG_b2&mNADPH_NADP_b1&mGR_b1
+mGSH_GSSG_b1,     !mGSH_GSSG_b1&mGR_b1 | mGSH_GSSG_b1&!mGSH_GSSG_b2&mGR_b1 | mGSH_GSSG_b1&mGSH_GSSG_b2
+mGSH_GSSG_b2,     mGSH_GSSG_b1&!mGPX_b1&mGR_b1
+mIDH2,            KrebsCycle_b1&KrebsCycle_b2
+mNADH_NAD_b1,     !mNADH_NAD_b1&!mPDH&!FAO&KrebsCycle_b1 | !mNADH_NAD_b1&!mPDH&FAO | !mNADH_NAD_b1&mPDH | mNADH_NAD_b1&!mNADH_NAD_b2&!mPDH&!FAO&KrebsCycle_b1 | mNADH_NAD_b1&!mNADH_NAD_b2&!mPDH&FAO | mNADH_NAD_b1&!mNADH_NAD_b2&mPDH | mNADH_NAD_b1&mNADH_NAD_b2
+mNADH_NAD_b2,     mNADH_NAD_b1&!mPDH&!FAO&KrebsCycle_b1&!ETC_b1 | mNADH_NAD_b1&!mPDH&FAO&!ETC_b1 | mNADH_NAD_b1&mPDH&!ETC_b1
+mNADPH_NADP_b1,   !mNADPH_NADP_b1&!mNNT_b1&mIDH2 | !mNADPH_NADP_b1&mNNT_b1 | mNADPH_NADP_b1&!mNADPH_NADP_b2&!mNNT_b1&mIDH2 | mNADPH_NADP_b1&!mNADPH_NADP_b2&mNNT_b1 | mNADPH_NADP_b1&mNADPH_NADP_b2
+mNADPH_NADP_b2,   mNADPH_NADP_b1&mNNT_b1&!mNNT_b2&mIDH2 | mNADPH_NADP_b1&mNNT_b1&mNNT_b2
+mNNT_b1,          !mNADH_NAD_b1&mNNT_b1&mNNT_b2 | mNADH_NAD_b1&!mdH_b1&mNNT_b1&mNNT_b2 | mNADH_NAD_b1&mdH_b1
+mNNT_b2,          mNADH_NAD_b1&!mNADH_NAD_b2&mdH_b1&mdH_b2&mNNT_b1 | mNADH_NAD_b1&mNADH_NAD_b2&mdH_b1&mNNT_b1
+mPDH,             !mNADH_NAD_b1&!mPDHP&!mPDHK&PYR | !mNADH_NAD_b1&mPDHP&!mPDHK | mNADH_NAD_b1&!mNADH_NAD_b2&!mPDHP&!mPDHK&PYR | mNADH_NAD_b1&!mNADH_NAD_b2&mPDHP&!mPDHK
+mPDHK,            !mNADH_NAD_b1&HIF1A | mNADH_NAD_b1&!mNADH_NAD_b2&HIF1A
+mPDHP,            mCa_b1&mCa_b2&!mNADH_NAD_b1 | mCa_b1&mCa_b2&mNADH_NAD_b1&!mNADH_NAD_b2
+mPRX,             !mROS_b1&mTRX_b1 | mROS_b1&!mROS_b2&mTRX_b1 | mROS_b1&mROS_b2&mTRX_b1&mTRX_b2
+mQH2_Q_b1,        !mQH2_Q_b1&ETC_b1 | mQH2_Q_b1&!mQH2_Q_b2&ETC_b1 | mQH2_Q_b1&mQH2_Q_b2
+mQH2_Q_b2,        mQH2_Q_b1&mdH_b1&mdH_b2&ETC_b1
+mROS_b1,          !mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&cROS_b1&cROS_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | !mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&mTR_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&cROS_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | !mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&mTR_b2 | !mROS_b1&!mGPX_b1&mGR_b1&mGR_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&mTR_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2 | !mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&mGR_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&!mPRX | !mROS_b1&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&!mPRX | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&mGR_b2&!mPRX | !mROS_b1&mGPX_b1&mGPX_b2&mGR_b1&mGR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&!mTR_b1&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&!mGPX_b1&!mGR_b1&mTR_b1&mTR_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&mTR_b2 | mROS_b1&!mROS_b2&!mGPX_b1&mGR_b1&mGR_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&mTR_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2 | mROS_b1&!mROS_b2&mGPX_b1&!mGPX_b2&mGR_b1&mGR_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&!mPRX | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&!mPRX | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&mGR_b2&!mPRX | mROS_b1&!mROS_b2&mGPX_b1&mGPX_b2&mGR_b1&mGR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mROS_b2
+mROS_b2,          mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&!mGR_b1&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&mTR_b2&!mPRX | mROS_b1&!mGPX_b1&!mGR_b1&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&!mPRX | mROS_b1&!mGPX_b1&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&!mGPX_b1&mGR_b1&mGR_b2&!mPRX | mROS_b1&!mGPX_b1&mGR_b1&mGR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&!mPRX | mROS_b1&mGPX_b1&!mGPX_b2&!mGR_b1&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&!mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&!mTR_b1&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&!cROS_b1&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&!cROS_b2&ETC_b1&ETC_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&!mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&!mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&!mPRX | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&!mGR_b2&mTR_b1&mTR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&mGR_b2&!mPRX | mROS_b1&mGPX_b1&!mGPX_b2&mGR_b1&mGR_b2&mPRX&cROS_b1&cROS_b2 | mROS_b1&mGPX_b1&mGPX_b2&cROS_b1&cROS_b2
+mShuttle,         mNADPH_NADP_b1&mNADPH_NADP_b2&mIDH2
+mTRX_b1,          !mROS_b1&!mTR_b1&mTRX_b1&mTRX_b2 | !mROS_b1&mTR_b1 | mROS_b1&!mROS_b2&!mTR_b1&mTRX_b1&mTRX_b2 | mROS_b1&!mROS_b2&mTR_b1 | mROS_b1&mROS_b2&mTRX_b1&mTRX_b2
+mTRX_b2,          !mROS_b1&mTR_b1&mTRX_b1
+mTR_b1,           !mNADPH_NADP_b1&mTR_b1&mTR_b2 | mNADPH_NADP_b1
+mTR_b2,           mNADPH_NADP_b1&mNADPH_NADP_b2&mTR_b1&mTRX_b1&mTRX_b2
+mdH_b1,           !mdH_b1&!ETC_b1&!ATPSyn | !mdH_b1&ETC_b1 | mdH_b1&!mdH_b2&!ETC_b1&!ATPSyn | mdH_b1&!mdH_b2&ETC_b1 | mdH_b1&mdH_b2
+mdH_b2,           mdH_b1&ETC_b1&!ATPSyn

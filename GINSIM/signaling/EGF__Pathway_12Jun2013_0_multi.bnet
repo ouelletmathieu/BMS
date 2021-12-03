@@ -1,0 +1,38 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Aop,      !Rl_b1
+Aos,      Aos
+Cbl,      Cbl
+Cic,      !Rl_b1
+Cnk,      Cnk
+Der_b1,   !Spi_b1&!Vein&Der_b1&Der_b2 | !Spi_b1&Vein&!Shc&Der_b1&Der_b2 | !Spi_b1&Vein&Shc&!Aos&!Cbl&!Kek | !Spi_b1&Vein&Shc&!Aos&!Cbl&Kek&Der_b1&Der_b2 | !Spi_b1&Vein&Shc&!Aos&Cbl&Der_b1&Der_b2 | !Spi_b1&Vein&Shc&Aos&Der_b1&Der_b2 | Spi_b1&!Spi_b2&!Shc&Der_b1&Der_b2 | Spi_b1&!Spi_b2&Shc&!Aos&!Cbl&!Kek | Spi_b1&!Spi_b2&Shc&!Aos&!Cbl&Kek&Der_b1&Der_b2 | Spi_b1&!Spi_b2&Shc&!Aos&Cbl&Der_b1&Der_b2 | Spi_b1&!Spi_b2&Shc&Aos&Der_b1&Der_b2 | Spi_b1&Spi_b2&!Shc&Der_b1&Der_b2 | Spi_b1&Spi_b2&Shc
+Der_b2,   Spi_b1&Spi_b2&Shc&!Aos&!Cbl&!Kek&Der_b1
+Drk_b1,   !Der_b1&Drk_b1&Drk_b2 | Der_b1
+Drk_b2,   Der_b1&Der_b2&Drk_b1
+Dsor1_b1, !Raf_b1&Dsor1_b1&Dsor1_b2 | Raf_b1
+Dsor1_b2, Raf_b1&Raf_b2&Dsor1_b1
+Gap1,     PLCg
+Gro,      !Rl_b1
+Kek,      Kek
+Ksr,      Ksr
+Msk,      Msk
+PLCg,     Der_b1
+Pnt_b1,   !Rl_b1&Pnt_b1&Pnt_b2 | Rl_b1
+Pnt_b2,   Rl_b1&Rl_b2&Pnt_b1
+Raf_b1,   !Ras_b1&Raf_b1&Raf_b2 | Ras_b1&!Raf_b1&Cnk&Src42&Ksr | Ras_b1&Raf_b1&!Raf_b2&Cnk&Src42&Ksr | Ras_b1&Raf_b1&Raf_b2
+Raf_b2,   Ras_b1&Ras_b2&Raf_b1&Cnk&Src42&Ksr
+Ras_b1,   !Sos_b1&Ras_b1&Ras_b2 | Sos_b1&!Sos_b2&!Ras_b1&!Gap1 | Sos_b1&!Sos_b2&!Ras_b1&Gap1&!Sty | Sos_b1&!Sos_b2&Ras_b1&!Ras_b2&!Gap1 | Sos_b1&!Sos_b2&Ras_b1&!Ras_b2&Gap1&!Sty | Sos_b1&!Sos_b2&Ras_b1&Ras_b2 | Sos_b1&Sos_b2
+Ras_b2,   Sos_b1&Sos_b2&Ras_b1&!Gap1 | Sos_b1&Sos_b2&Ras_b1&Gap1&!Sty
+Rl_b1,    !Dsor1_b1&Rl_b1&Rl_b2 | Dsor1_b1&!Rl_b1&Msk | Dsor1_b1&Rl_b1&!Rl_b2&Msk | Dsor1_b1&Rl_b1&Rl_b2
+Rl_b2,    Dsor1_b1&Dsor1_b2&Rl_b1&Msk
+Shc,      Shc
+Sos_b1,   !Drk_b1&Sos_b1&Sos_b2 | Drk_b1
+Sos_b2,   Drk_b1&Drk_b2&Sos_b1
+Spi_b1,   Spi_b1
+Spi_b2,   Spi_b1&Spi_b2
+Src42,    Src42
+Sty,      Sty
+Targets,  Pnt_b1&!Aop&!Cic | Pnt_b1&!Aop&Cic&!Gro
+Vein,     Spi_b1&Der_b1

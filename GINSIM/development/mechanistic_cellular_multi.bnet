@@ -1,0 +1,28 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+A,          Aos_ext_b1&!Aos_ext_b2&Aos | Aos_ext_b1&Aos_ext_b2
+Aos,        dpERK_b1&Pnt&!Mid
+Aos_ext_b1, Aos_ext_b1
+Aos_ext_b2, Aos_ext_b1&Aos_ext_b2
+Br,         !Dpp&!Mirr&!Pnt&Br | !Dpp&Mirr&!Pnt
+Br_adj,     Br_adj
+Dpp,        Dpp
+Grk_b1,     Grk_b1
+Grk_b2,     Grk_b1&Grk_b2
+Grk_b3,     Grk_b1&Grk_b2&Grk_b3
+Mid,        !earlyGrk&Mid | earlyGrk&!Mid&!earlyDpp | earlyGrk&Mid
+Mirr,       dpERK_b1&!Mid
+Pnt,        dpERK_b1&dpERK_b2
+Rho_b1,     !dpERK_b1&Rho_b1&Rho_b2 | dpERK_b1&!Mirr&Rho_b1&Rho_b2 | dpERK_b1&Mirr&!Rho_b1&!Br | dpERK_b1&Mirr&Rho_b1&!Rho_b2&!Br | dpERK_b1&Mirr&Rho_b1&Rho_b2
+Rho_b2,     dpERK_b1&dpERK_b2&Mirr&Rho_b1&!Br
+Rho_ext_b1, Rho_ext_b1
+Rho_ext_b2, Rho_ext_b1&Rho_ext_b2
+S_b1,       !Rho_ext_b1&!Rho_b1&S_b1&S_b2 | !Rho_ext_b1&Rho_b1 | Rho_ext_b1
+S_b2,       !Rho_ext_b1&Rho_b1&Rho_b2&S_b1 | Rho_ext_b1&!Rho_ext_b2&Rho_b1&Rho_b2&S_b1 | Rho_ext_b1&Rho_ext_b2&S_b1
+X,          Br_adj&!Br
+dpERK_b1,   !Grk_b1&!dpERK_b1&S_b1&!X&!A | !Grk_b1&!dpERK_b1&S_b1&X | !Grk_b1&dpERK_b1&!dpERK_b2&S_b1&!X&!A | !Grk_b1&dpERK_b1&!dpERK_b2&S_b1&X | !Grk_b1&dpERK_b1&dpERK_b2 | Grk_b1&!Grk_b2&!dpERK_b1&!S_b1&X | Grk_b1&!Grk_b2&!dpERK_b1&S_b1 | Grk_b1&!Grk_b2&dpERK_b1&!dpERK_b2&!S_b1&X | Grk_b1&!Grk_b2&dpERK_b1&!dpERK_b2&S_b1 | Grk_b1&!Grk_b2&dpERK_b1&dpERK_b2 | Grk_b1&Grk_b2
+dpERK_b2,   !Grk_b1&dpERK_b1&S_b1&S_b2&!X&!A | !Grk_b1&dpERK_b1&S_b1&S_b2&X | Grk_b1&!Grk_b2&dpERK_b1&S_b1&!S_b2&X | Grk_b1&!Grk_b2&dpERK_b1&S_b1&S_b2&!X&!A | Grk_b1&!Grk_b2&dpERK_b1&S_b1&S_b2&X | Grk_b1&Grk_b2&!Grk_b3&dpERK_b1&!S_b1&X | Grk_b1&Grk_b2&!Grk_b3&dpERK_b1&S_b1&!S_b2&X | Grk_b1&Grk_b2&!Grk_b3&dpERK_b1&S_b1&S_b2&!X&!A | Grk_b1&Grk_b2&!Grk_b3&dpERK_b1&S_b1&S_b2&X | Grk_b1&Grk_b2&Grk_b3&dpERK_b1
+earlyDpp,   earlyDpp
+earlyGrk,   earlyGrk

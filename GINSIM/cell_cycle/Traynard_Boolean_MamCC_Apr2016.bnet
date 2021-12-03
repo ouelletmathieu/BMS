@@ -1,0 +1,18 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Cdc20,    CycB
+Cdh1,     !CycA&!CycB | !CycA&CycB&p27_1_b1 | CycA&p27_1_b1&!Skp2 | CycA&p27_1_b1&Skp2&p27_2
+CycA,     !E2F&CycA&!Cdc20&!Cdh1 | !E2F&CycA&!Cdc20&Cdh1&!UbcH10 | !E2F&CycA&Cdc20&!UbcH10 | E2F&!CycA&!Cdc20&!Cdh1&!Rb1 | E2F&!CycA&!Cdc20&Cdh1&!UbcH10&!Rb1 | E2F&!CycA&Cdc20&!UbcH10&!Rb1 | E2F&CycA&!Cdc20&!Cdh1 | E2F&CycA&!Cdc20&Cdh1&!UbcH10 | E2F&CycA&Cdc20&!UbcH10
+CycB,     !Cdc20&!Cdh1 | Cdc20&!Cdh1&!UbcH10
+CycD,     CycD
+CycE,     !Rb2&E2F | Rb2&E2F&!Rb1
+E2F,      !Rb2&!CycA&!CycB | !Rb2&!CycA&CycB&!Cdc20 | !Rb2&CycA&!CycB&!Skp2 | !Rb2&CycA&!CycB&Skp2&p27_2 | !Rb2&CycA&CycB&!Cdc20&!Skp2 | !Rb2&CycA&CycB&!Cdc20&Skp2&p27_2 | Rb2&!CycA&!CycB&!Rb1 | Rb2&!CycA&CycB&!Cdc20&!Rb1 | Rb2&CycA&!CycB&!Skp2&!Rb1 | Rb2&CycA&!CycB&Skp2&!Rb1&p27_2 | Rb2&CycA&CycB&!Cdc20&!Skp2&!Rb1 | Rb2&CycA&CycB&!Cdc20&Skp2&!Rb1&p27_2
+Rb1,      !Rb2&!CycE&!CycA&!CycB | !Rb2&!CycE&!CycA&CycB&p27_1_b1 | !Rb2&!CycE&CycA&p27_1_b1 | !Rb2&CycE&p27_1_b1 | Rb2
+Rb2,      !CycD&!CycE&!CycA&!CycB&Rb1 | !CycD&!CycE&!CycA&CycB&p27_1_b1&Rb1 | !CycD&!CycE&CycA&p27_1_b1&Rb1 | !CycD&CycE&!CycA&p27_1_b1&Rb1 | !CycD&CycE&CycA&!CycB&p27_1_b1&Rb1
+Skp2,     !Rb2 | Rb2&!Cdh1 | Rb2&Cdh1&!Rb1
+UbcH10,   !CycA&!CycB&!Cdc20&!Cdh1 | !CycA&!CycB&Cdc20&!Cdh1 | !CycA&!CycB&Cdc20&Cdh1&UbcH10 | !CycA&CycB&!Cdh1 | !CycA&CycB&Cdh1&UbcH10 | CycA&!Cdh1 | CycA&Cdh1&UbcH10
+p27_1_b1, !CycD&!p27_1_b1&p27_2 | !CycD&p27_1_b1&!p27_1_b2&p27_2 | !CycD&p27_1_b1&p27_1_b2 | CycD&!CycE&!CycA&!CycB | CycD&!CycE&!CycA&CycB&!p27_1_b1&!Skp2 | CycD&!CycE&!CycA&CycB&!p27_1_b1&Skp2&p27_2 | CycD&!CycE&!CycA&CycB&p27_1_b1&!p27_1_b2&!Skp2 | CycD&!CycE&!CycA&CycB&p27_1_b1&!p27_1_b2&Skp2&p27_2 | CycD&!CycE&!CycA&CycB&p27_1_b1&p27_1_b2 | CycD&!CycE&CycA&!CycB&!p27_1_b1&!Skp2 | CycD&!CycE&CycA&!CycB&!p27_1_b1&Skp2&p27_2 | CycD&!CycE&CycA&!CycB&p27_1_b1 | CycD&!CycE&CycA&CycB&!p27_1_b1&!Skp2 | CycD&!CycE&CycA&CycB&!p27_1_b1&Skp2&p27_2 | CycD&!CycE&CycA&CycB&p27_1_b1&!p27_1_b2&!Skp2 | CycD&!CycE&CycA&CycB&p27_1_b1&!p27_1_b2&Skp2&p27_2 | CycD&!CycE&CycA&CycB&p27_1_b1&p27_1_b2 | CycD&CycE&!p27_1_b1&!Skp2 | CycD&CycE&!p27_1_b1&Skp2&p27_2 | CycD&CycE&p27_1_b1&!p27_1_b2&!Skp2 | CycD&CycE&p27_1_b1&!p27_1_b2&Skp2&p27_2 | CycD&CycE&p27_1_b1&p27_1_b2
+p27_1_b2, 0
+p27_2,    !CycD&!CycE&!CycB&p27_1_b1 | !CycD&!CycE&CycB&p27_1_b1&!Skp2 | !CycD&CycE&!CycA&!CycB&p27_1_b1&!Skp2 | !CycD&CycE&!CycA&!CycB&p27_1_b1&Skp2&p27_2 | !CycD&CycE&!CycA&CycB&p27_1_b1&!Skp2 | !CycD&CycE&CycA&p27_1_b1&!Skp2

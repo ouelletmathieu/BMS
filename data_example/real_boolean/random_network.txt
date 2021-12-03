@@ -1,0 +1,3 @@
+file_name,n,k,topology,linkage,id,ratio_sym,
+randomnet_9_1.33_homogeneous_uniform_2_.bnet, , ,9, , ,1.33, , ,homogeneous, , ,uniform, , ,2, , ,0.4444444444444444,
+randomnet_26_1.62_homogeneous_uniform_2_.bnet, , ,26, , ,1.62, , ,homogeneous, , ,uniform, , ,2, , ,0.565463139460637,

@@ -1,0 +1,49 @@
+targets, factors
+Gene1, (Gene12)
+Gene2, (Gene39 & !Gene9)
+Gene3, (Gene36)
+Gene4, 0
+Gene5, 0
+Gene6, 1
+Gene7, (Gene39)
+Gene8, (!Gene44) | (Gene25)
+Gene9, (!Gene11 & !Gene44 & !Gene43 & !Gene15 & !Gene26) | (!Gene11 & !Gene5 & Gene15 & Gene26) | (!Gene44 & !Gene5 & Gene43 & !Gene15 & Gene26) | (!Gene11 & Gene5 & !Gene43 & !Gene15) | (!Gene11 & Gene5 & !Gene43 & !Gene26) | (!Gene11 & !Gene44 & !Gene43 & Gene15 & Gene26) | (!Gene44 & Gene5 & Gene43 & !Gene15 & !Gene26) | (!Gene11 & Gene44 & !Gene43 & !Gene15 & Gene26) | (!Gene11 & Gene44 & !Gene43 & Gene15 & !Gene26) | (Gene44 & !Gene5 & Gene43 & !Gene15 & !Gene26) | (!Gene11 & !Gene5 & Gene43 & Gene26) | (!Gene11 & Gene5 & !Gene15 & !Gene26) | (!Gene11 & Gene44 & Gene5 & !Gene26) | (!Gene11 & Gene44 & Gene43 & Gene15 & Gene26) | (Gene11 & !Gene44 & !Gene5 & !Gene15 & Gene26) | (Gene11 & !Gene44 & !Gene5 & Gene15 & !Gene26) | (Gene11 & !Gene5 & Gene43 & !Gene15 & !Gene26) | (Gene11 & !Gene44 & Gene43 & !Gene15) | (Gene11 & !Gene44 & Gene5 & Gene43 & Gene26) | (Gene11 & Gene44 & !Gene43 & !Gene15 & !Gene26) | (Gene44 & !Gene5 & !Gene43 & Gene15 & Gene26) | (Gene44 & Gene5 & !Gene43 & !Gene15)
+Gene10, (Gene26)
+Gene11, (Gene16)
+Gene12, (Gene36) | (Gene33)
+Gene13, 0
+Gene14, (Gene41 & !Gene7)
+Gene15, (!Gene43) | (Gene36)
+Gene16, (Gene36)
+Gene17, (Gene19 & !Gene14) | (!Gene31 & Gene19 & !Gene34) | (Gene31 & !Gene14) | (Gene31 & !Gene19 & !Gene34)
+Gene18, (Gene16)
+Gene19, (!Gene38 & Gene32 & !Gene42) | (Gene38 & !Gene32 & !Gene42) | (Gene38 & Gene32 & Gene42)
+Gene20, (Gene32)
+Gene21, (!Gene14) | (!Gene31)
+Gene22, 0
+Gene23, (!Gene34)
+Gene24, (!Gene32)
+Gene25, (!Gene5 & !Gene20 & Gene2) | (Gene5 & !Gene20 & !Gene2)
+Gene26, 1
+Gene27, (Gene45 & !Gene2)
+Gene28, 0
+Gene29, (Gene1 & !Gene39)
+Gene30, 0
+Gene31, 1
+Gene32, (Gene32) | (Gene9)
+Gene33, (!Gene44)
+Gene34, (Gene42)
+Gene35, (!Gene4)
+Gene36, (!Gene2) | (Gene35)
+Gene37, 0
+Gene38, 1
+Gene39, (!Gene28 & !Gene44) | (Gene26 & !Gene28) | (Gene26 & Gene21)
+Gene40, (!Gene12 & !Gene43 & Gene6 & !Gene38) | (Gene12 & !Gene43 & Gene6 & Gene38) | (Gene12 & Gene43 & !Gene6 & Gene38) | (Gene12 & Gene43 & Gene6 & !Gene38)
+Gene41, (Gene20)
+Gene42, (!Gene21 & Gene28)
+Gene43, (!Gene39 & !Gene6) | (Gene39 & Gene6) | (Gene25 & !Gene6)
+Gene44, (Gene3)
+Gene45, (!Gene9)
+Gene46, (!Gene27) | (!Gene24)
+Gene47, (Gene18 & Gene16)
+Gene48, (Gene28 & Gene34)

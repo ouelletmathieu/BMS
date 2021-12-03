@@ -1,0 +1,20 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Bx42,     Bx42
+CtBP,     CtBP
+Da,       Da
+Delta,    Delta
+E_Spl_b1, !Nicd | Nicd&!E_Spl_b1&!H&!Gro&!CtBP | Nicd&!E_Spl_b1&!H&!Gro&CtBP&!Mam | Nicd&!E_Spl_b1&!H&Gro&!Mam | Nicd&!E_Spl_b1&H&!Mam | Nicd&E_Spl_b1&!E_Spl_b2&!H&!Gro&!CtBP | Nicd&E_Spl_b1&!E_Spl_b2&!H&!Gro&CtBP&!Mam | Nicd&E_Spl_b1&!E_Spl_b2&!H&Gro&!Mam | Nicd&E_Spl_b1&!E_Spl_b2&H&!Mam | Nicd&E_Spl_b1&E_Spl_b2
+E_Spl_b2, Nicd&E_Spl_b1&!H&!Gro&!CtBP&Mam
+Emc,      Nicd
+Gro,      Gro
+H,        H
+Mam,      Mam
+Nicd,     Notch
+Notch,    Delta
+Su_H,     Su_H
+Twi_b1,   !Emc&!Da&Twi_b1&Twi_b2 | !Emc&Da | Emc&!E_Spl_b1&!Da&Twi_b1&Twi_b2 | Emc&!E_Spl_b1&Da | Emc&E_Spl_b1&!E_Spl_b2&!Da&Twi_b1&Twi_b2 | Emc&E_Spl_b1&!E_Spl_b2&Da | Emc&E_Spl_b1&E_Spl_b2&Twi_b1&Twi_b2
+Twi_b2,   !Emc&Da&Twi_b1 | Emc&!E_Spl_b1&Da&Twi_b1
+p300,     p300

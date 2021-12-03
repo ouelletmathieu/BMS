@@ -1,0 +1,11 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+CII,    !CI_b1&!Cro_b1&N | !CI_b1&Cro_b1&!Cro_b2&N | !CI_b1&Cro_b1&Cro_b2&!Cro_b3&N | CI_b1&!CI_b2&!Cro_b1&N | CI_b1&!CI_b2&Cro_b1&!Cro_b2&N | CI_b1&!CI_b2&Cro_b1&Cro_b2&!Cro_b3&N
+CI_b1,  !CI_b1&!Cro_b1 | !CI_b1&Cro_b1&CII | CI_b1&!CI_b2&!Cro_b1 | CI_b1&!CI_b2&Cro_b1&CII | CI_b1&CI_b2
+CI_b2,  CI_b1&!Cro_b1 | CI_b1&Cro_b1&CII
+Cro_b1, !CI_b1 | CI_b1&!CI_b2 | CI_b1&CI_b2&Cro_b1&Cro_b2
+Cro_b2, !CI_b1&Cro_b1 | CI_b1&!CI_b2&Cro_b1 | CI_b1&CI_b2&Cro_b1&Cro_b2&Cro_b3
+Cro_b3, !CI_b1&Cro_b1&Cro_b2&!Cro_b3 | CI_b1&!CI_b2&Cro_b1&Cro_b2&!Cro_b3
+N,      !CI_b1&!Cro_b1 | !CI_b1&Cro_b1&!Cro_b2

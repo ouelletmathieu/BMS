@@ -1,0 +1,23 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Brwd3,      Brwd3
+Dome,       !OS&!Upd2&Upd3 | !OS&Upd2 | OS
+ET,         ET
+Hop_b1,     !Dome&Hop_b1&Hop_b2 | Dome&!ET&!Hrs&!Socs36E | Dome&!ET&!Hrs&Socs36E&Hop_b1&Hop_b2 | Dome&!ET&Hrs&!Stam&!Socs36E | Dome&!ET&Hrs&!Stam&Socs36E&Hop_b1&Hop_b2 | Dome&!ET&Hrs&Stam | Dome&ET&Hop_b1&Hop_b2
+Hop_b2,     Dome&!ET&Hrs&Stam&!Socs36E&Hop_b1
+Hrs,        Hrs
+Ken,        Ken
+NStat92E,   NStat92E
+OS,         OS
+Ptp61F,     Ptp61F
+Socs36E,    Stat92E_b1&Stat92E_b2
+Socs44A,    Socs44A
+Stam,       Stam
+Stat92E_b1, !Hop_b1&Stat92E_b1&Stat92E_b2 | Hop_b1&!Socs44A&!Ptp61F&!Brwd3&!Ken&!Su_var | Hop_b1&!Socs44A&!Ptp61F&!Brwd3&!Ken&Su_var&Stat92E_b1&Stat92E_b2 | Hop_b1&!Socs44A&!Ptp61F&!Brwd3&Ken&Stat92E_b1&Stat92E_b2 | Hop_b1&!Socs44A&!Ptp61F&Brwd3&Stat92E_b1&Stat92E_b2 | Hop_b1&!Socs44A&Ptp61F&Stat92E_b1&Stat92E_b2 | Hop_b1&Socs44A&Stat92E_b1&Stat92E_b2
+Stat92E_b2, Hop_b1&Hop_b2&!Socs44A&!Ptp61F&!Brwd3&!Ken&!Su_var&Stat92E_b1
+Su_var,     Su_var
+Targets,    Stat92E_b1&!NStat92E
+Upd2,       Upd2
+Upd3,       Upd3

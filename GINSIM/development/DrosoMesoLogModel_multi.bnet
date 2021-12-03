@@ -1,0 +1,61 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Bap_b1,  !En&!Med&!Bap_b1&Bin_b1&!Bin_b2&!Slp&Tin_b1 | !En&!Med&!Bap_b1&Bin_b1&Bin_b2 | !En&!Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&!Slp&Tin_b1 | !En&!Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | !En&!Med&Bap_b1&Bap_b2 | !En&Med&!Bap_b1&!Bin_b1&!Ci&Mad&!Slp&Tin_b1 | !En&Med&!Bap_b1&!Bin_b1&Ci&Mad&Tin_b1 | !En&Med&!Bap_b1&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | !En&Med&!Bap_b1&Bin_b1&!Bin_b2&Ci&!Mad&!Slp&Tin_b1 | !En&Med&!Bap_b1&Bin_b1&!Bin_b2&Ci&Mad&Tin_b1 | !En&Med&!Bap_b1&Bin_b1&Bin_b2 | !En&Med&Bap_b1&!Bap_b2&!Bin_b1&!Ci&Mad&!Slp&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&!Bin_b1&Ci&Mad&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&!Mad&!Slp&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&Mad&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | !En&Med&Bap_b1&Bap_b2 | En&!Med&!Bap_b1&!Bin_b1&Ci&Tin_b1 | En&!Med&!Bap_b1&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | En&!Med&!Bap_b1&Bin_b1&!Bin_b2&Ci&Tin_b1 | En&!Med&!Bap_b1&Bin_b1&Bin_b2 | En&!Med&Bap_b1&!Bap_b2&!Bin_b1&Ci&Tin_b1 | En&!Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | En&!Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&Tin_b1 | En&!Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | En&!Med&Bap_b1&Bap_b2 | En&Med&!Bap_b1&!Bin_b1&!Ci&Mad&!Slp&Tin_b1 | En&Med&!Bap_b1&!Bin_b1&Ci&Tin_b1 | En&Med&!Bap_b1&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | En&Med&!Bap_b1&Bin_b1&!Bin_b2&Ci&Tin_b1 | En&Med&!Bap_b1&Bin_b1&Bin_b2 | En&Med&Bap_b1&!Bap_b2&!Bin_b1&!Ci&Mad&!Slp&Tin_b1 | En&Med&Bap_b1&!Bap_b2&!Bin_b1&Ci&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&!Ci&!Slp&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | En&Med&Bap_b1&Bap_b2
+Bap_b2,  !En&!Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | !En&!Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&Bin_b2 | !En&!Med&Bap_b1&Bap_b2&Bap_b3 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&Mad&!Slp&Tin_b1 | !En&Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | !En&Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&!Bin_b2&Ci&Mad&!Slp&Tin_b1 | !En&Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&Bin_b2 | !En&Med&Bap_b1&Bap_b2&Bap_b3 | En&!Med&Bap_b1&!Bap_b2&!Bin_b1&Ci&!Slp&Tin_b1 | En&!Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&!Slp&Tin_b1 | En&!Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | En&!Med&Bap_b1&Bap_b2&!Bap_b3&!Bin_b1&Ci&!Slp&Tin_b1 | En&!Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&!Bin_b2&Ci&!Slp&Tin_b1 | En&!Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&Bin_b2 | En&!Med&Bap_b1&Bap_b2&Bap_b3 | En&Med&Bap_b1&!Bap_b2&!Bin_b1&Ci&!Slp&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&!Ci&Mad&!Slp&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&!Bin_b2&Ci&!Slp&Tin_b1 | En&Med&Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | En&Med&Bap_b1&Bap_b2&!Bap_b3&!Bin_b1&Ci&!Slp&Tin_b1 | En&Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&!Bin_b2&!Ci&Mad&!Slp&Tin_b1 | En&Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&!Bin_b2&Ci&!Slp&Tin_b1 | En&Med&Bap_b1&Bap_b2&!Bap_b3&Bin_b1&Bin_b2 | En&Med&Bap_b1&Bap_b2&Bap_b3
+Bap_b3,  !En&Bap_b1&Bap_b2&Bin_b1&Bin_b2 | En&!Med&Bap_b1&Bap_b2&Bin_b1&Bin_b2 | En&Med&Bap_b1&Bap_b2&!Bin_b1&Ci&Mad&!Slp&Tin_b1 | En&Med&Bap_b1&Bap_b2&Bin_b1&!Bin_b2&Ci&Mad&!Slp&Tin_b1 | En&Med&Bap_b1&Bap_b2&Bin_b1&Bin_b2
+Bin_b1,  !Bap_b1&Bin_b1&Bin_b2 | Bap_b1&!Bap_b2&Bin_b1&Bin_b2 | Bap_b1&Bap_b2
+Bin_b2,  0
+Brk,     !Med | Med&!Shn | Med&Shn&!Mad
+Ci,      !Pka
+Da,      !Emc
+Delta,   Delta
+Der,     Spi
+Doc,     Med&Mad&Pan
+Dome,    Upd
+Dpp,     Dpp
+Dsix4,   !Med&!Tin_b1&Zfh1 | !Med&Tin_b1 | Med&!Mad&!Tin_b1&Zfh1 | Med&!Mad&Tin_b1
+E_S,     SuH&Nicd&Stat92E
+Emc,     Nicd
+En,      En
+Eve,     Med&Htl&Mad&Pan&Pnt_b1&Tin_b1&Tin_b2&Twi_b1
+Eya,     !Tin_b1&Twi_b1 | Tin_b1&!Tin_b2&Twi_b1 | Tin_b1&Tin_b2
+Hbr,     Htl&Pan
+Hh,      Hh
+Hop,     Dome
+Htl,     !Pyr&Ths&Pan | Pyr&!Ths&Pan | Pyr&Ths
+Mad,     Tkv
+Med,     Med
+Mef2,    !Tin_b1&Twi_b1&Twi_b2 | Tin_b1
+Nicd,    Notch
+Notch,   Delta
+Pan,     Wg
+Pka,     !Smo
+Pnr,     Doc&Tin_b1
+Pnt_b1,  !Pnt_b1&Rl_b1 | Pnt_b1&!Pnt_b2&Rl_b1 | Pnt_b1&Pnt_b2
+Pnt_b2,  0
+Poxm,    !Med&Pan&Twi_b1 | Med&!Mad&Pan&Twi_b1
+Ptc,     !Hh
+Pyr,     Pyr
+Ras_b1,  !Der&Ras_b1&Ras_b2 | Der
+Ras_b2,  0
+Rl_b1,   !Ras_b1&Rl_b1&Rl_b2 | Ras_b1
+Rl_b2,   0
+Shn,     Shn
+Slp,     Pan
+Smo,     !Ptc
+Spi,     Spi
+Srp_b1,  !Med&!Ci&Srp_b1&Srp_b2 | !Med&Ci | Med&!Ci&Srp_b1&Srp_b2 | Med&Ci&!Mad | Med&Ci&Mad&Srp_b1&Srp_b2
+Srp_b2,  En&!Med&Ci&Srp_b1 | En&Med&Ci&!Mad&Srp_b1
+Stat92E, !Hop&Tin_b1&Tin_b2 | Hop
+SuH,     SuH
+Ths,     Ths
+Tin_b1,  !Med&!Mad&Tin_b1&Tin_b2 | !Med&Mad&!Tin_b1&Twi_b1 | !Med&Mad&Tin_b1 | Med&!Mad&Tin_b1&Tin_b2 | Med&Mad
+Tin_b2,  Med&Mad&Pan&Stat92E&Tin_b1
+Tkv,     Dpp
+Twi_b1,  !Da&!Slp&Twi_b1&Twi_b2 | !Da&Slp&Twi_b1 | Da&!E_S&Twi_b1 | Da&E_S&!Slp&Twi_b1&Twi_b2 | Da&E_S&Slp&Twi_b1
+Twi_b2,  Da&!E_S&Slp&Twi_b1
+Upd,     Upd
+Wg,      Wg
+Zfh1,    Twi_b1

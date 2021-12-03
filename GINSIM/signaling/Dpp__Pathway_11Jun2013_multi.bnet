@@ -1,0 +1,22 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Brk,       !Shn&!MadMed_b1
+Dad,       !Brk&MadMed_b1&MadMed_b2
+Dpp_b1,    Dpp_b1
+Dpp_b2,    Dpp_b1&Dpp_b2
+Gbb,       Gbb
+MadMed_b1, !Tkv_b1&!Sax&MadMed_b1&MadMed_b2 | !Tkv_b1&Sax&!Dad | !Tkv_b1&Sax&Dad&MadMed_b1&MadMed_b2 | Tkv_b1&!Tkv_b2&!Dad | Tkv_b1&!Tkv_b2&Dad&MadMed_b1&MadMed_b2 | Tkv_b1&Tkv_b2
+MadMed_b2, Tkv_b1&Tkv_b2&!Dad&MadMed_b1
+Nej,       Nej
+Punt,      Punt
+Sax,       !Scw&!Gbb&!Sog&Dpp_b1&Punt | !Scw&Gbb&!Sog&Punt | Scw&!Sog&Punt
+Scw,       Scw
+Shn,       Shn
+Sog,       !Tld
+Targets,   !Brk&MadMed_b1&Nej
+Tkv_b1,    !Scw&!Gbb&!Sog&!Dpp_b1&Tkv_b1&Tkv_b2 | !Scw&!Gbb&!Sog&Dpp_b1&!Tsg&!Tkv_b1&Punt | !Scw&!Gbb&!Sog&Dpp_b1&!Tsg&Tkv_b1&!Tkv_b2&Punt | !Scw&!Gbb&!Sog&Dpp_b1&!Tsg&Tkv_b1&Tkv_b2 | !Scw&!Gbb&!Sog&Dpp_b1&Tsg&Tkv_b1&Tkv_b2 | !Scw&!Gbb&Sog&Tkv_b1&Tkv_b2 | !Scw&Gbb&!Sog&!Tsg&!Tkv_b1&Punt | !Scw&Gbb&!Sog&!Tsg&Tkv_b1&!Tkv_b2&Punt | !Scw&Gbb&!Sog&!Tsg&Tkv_b1&Tkv_b2 | !Scw&Gbb&!Sog&Tsg&Tkv_b1&Tkv_b2 | !Scw&Gbb&Sog&Tkv_b1&Tkv_b2 | Scw&!Sog&!Tsg&!Tkv_b1&Punt | Scw&!Sog&!Tsg&Tkv_b1&!Tkv_b2&Punt | Scw&!Sog&!Tsg&Tkv_b1&Tkv_b2 | Scw&!Sog&Tsg&Tkv_b1&Tkv_b2 | Scw&Sog&Tkv_b1&Tkv_b2
+Tkv_b2,    !Sog&Dpp_b1&Dpp_b2&!Tsg&Tkv_b1&Punt
+Tld,       Tld
+Tsg,       Tsg

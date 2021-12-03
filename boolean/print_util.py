@@ -1,10 +1,20 @@
 import os
 
-def create_text_file(output_file, header):
-    file = open(output_file, 'a') 
-    if os.stat(output_file).st_size < 10:
+def create_text_file(output_file, header, delete=False):
+    if delete:
+        if os.path.exists(output_file):
+            os.remove(output_file)
+        file = open(output_file, 'a') 
         file.writelines(header)
-    return file
+        file.flush()
+        return file
+        
+    else:
+        file = open(output_file, 'a') 
+        if os.stat(output_file).st_size < 10:
+            file.writelines(header)
+            file.flush()
+        return file
 
 def print_list_file(list_out, file):
     str_output = ""

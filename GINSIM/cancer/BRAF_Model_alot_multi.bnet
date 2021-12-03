@@ -1,0 +1,41 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+AKT,              PDPK1
+ATM,              ATM
+BRAF,             !AKT&RAS
+CRAF,             RAS
+EGF,              EGF
+EGFR,             !ERK_b1&EGF&!FOXD3
+ERBB2,            EGFR
+ERBB3,            FOXD3
+ERK_b1,           !ERK_b1&MEK_b1 | ERK_b1&!ERK_b2&MEK_b1 | ERK_b1&ERK_b2
+ERK_b2,           ERK_b1&MEK_b1&MEK_b2
+FGF,              FGF
+FGFR2,            FGF
+FOXD3,            !ERK_b1&SOX10
+FRS2,             FGFR2
+GAB1,             !ERK_b1&!GRB2&MET | !ERK_b1&GRB2&!EGFR&MET | !ERK_b1&GRB2&EGFR | ERK_b1&MET
+GRB2,             !SPRY&!EGFR&!MET&!FRS2&ERBB3 | !SPRY&!EGFR&!MET&FRS2 | !SPRY&!EGFR&MET | !SPRY&EGFR
+HGF,              HGF
+MDM2,             AKT&!ATM&p53
+MEK_b1,           !MEK_b1&!BRAF&CRAF | !MEK_b1&BRAF | MEK_b1&!MEK_b2&!BRAF&CRAF | MEK_b1&!MEK_b2&BRAF | MEK_b1&MEK_b2
+MEK_b2,           MEK_b1&BRAF
+MET,              HGF
+PDPK1,            PI3K
+PI3K,             !PTEN&!RAS&!GAB1&ERBB3 | !PTEN&!RAS&GAB1 | !PTEN&RAS&!SOS&!GAB1&ERBB3 | !PTEN&RAS&!SOS&GAB1 | !PTEN&RAS&SOS
+PTEN,             p53
+Proliferation_b1, !p70_b1&!ERK_b1&Proliferation_b1&Proliferation_b2 | !p70_b1&ERK_b1&!ERK_b2&Proliferation_b1&Proliferation_b2 | !p70_b1&ERK_b1&ERK_b2&!Proliferation_b1&!p21 | !p70_b1&ERK_b1&ERK_b2&Proliferation_b1&!Proliferation_b2&!p21 | !p70_b1&ERK_b1&ERK_b2&Proliferation_b1&Proliferation_b2 | p70_b1&!ERK_b1&Proliferation_b1&Proliferation_b2 | p70_b1&ERK_b1&!Proliferation_b1&!p21 | p70_b1&ERK_b1&Proliferation_b1&!Proliferation_b2&!p21 | p70_b1&ERK_b1&Proliferation_b1&Proliferation_b2
+Proliferation_b2, p70_b1&p70_b2&ERK_b1&Proliferation_b1&!p21
+RAS,              SOS
+RHEB,             !TSC2
+SOS,              GRB2&!SPRY
+SOX10,            SOX10
+SPRY,             ERK_b1
+TSC2,             !AKT
+mTOR,             RHEB
+p21,              !AKT&p53
+p53,              ATM&!MDM2
+p70_b1,           !PDPK1&!p70_b1&mTOR | !PDPK1&p70_b1&!p70_b2&mTOR | !PDPK1&p70_b1&p70_b2 | PDPK1
+p70_b2,           PDPK1&p70_b1&mTOR

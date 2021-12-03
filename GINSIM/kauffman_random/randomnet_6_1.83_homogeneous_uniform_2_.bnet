@@ -1,0 +1,7 @@
+targets, factors
+Gene1, 1
+Gene2, (!Gene5 & !Gene4) | (!Gene5 & !Gene2) | (!Gene5 & !Gene1) | (Gene1 & !Gene2) | (Gene5 & Gene1 & Gene4)
+Gene3, (Gene1)
+Gene4, (!Gene3 & Gene1 & !Gene5) | (!Gene4 & Gene3) | (Gene4 & !Gene3 & !Gene5) | (Gene4 & !Gene1 & Gene5)
+Gene5, (Gene5 & !Gene1) | (Gene4 & Gene1)
+Gene6, (Gene2)

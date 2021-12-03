@@ -1,0 +1,20 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Bub2_Bfa1,       !PP2ACdc55_b1&!Cdc5Polo | PP2ACdc55_b1&!PP2ACdc55_b2&!Cdc5Polo | PP2ACdc55_b1&PP2ACdc55_b2
+Cdc14,           1
+Cdc15,           !Clb2_b1 | Clb2_b1&!Clb2_b2 | Clb2_b1&Clb2_b2&!Net1_b1&Cdc14 | Clb2_b1&Clb2_b2&Net1_b1&!Net1_b2&Cdc14
+Cdc20,           !Cdh1
+Cdc5Polo,        Clb2_b1&!Cdh1
+Cdh1,            !Clb2_b1&!Net1_b1&!Cdc14&Cdh1 | !Clb2_b1&!Net1_b1&Cdc14 | !Clb2_b1&Net1_b1&Cdh1 | Clb2_b1&!Clb2_b2&!Net1_b1&Cdc14
+Clb2_b1,         !Clb2_b1&!Cdh1 | Clb2_b1&!Clb2_b2&!Cdh1 | Clb2_b1&Clb2_b2
+Clb2_b2,         Clb2_b1&!Cdc20&!Cdh1
+Net1_b1,         !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&!Tem1&!Net1_b1&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&!Tem1&Net1_b1&!Net1_b2&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&!Tem1&Net1_b1&Net1_b2 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15&!Net1_b1&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15&Net1_b1&!Net1_b2&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15&Net1_b1&Net1_b2 | !Clb2_b1&!PP2ACdc55_b1&!Bub2_Bfa1&Tem1&Cdc15&Net1_b1&Net1_b2 | !Clb2_b1&!PP2ACdc55_b1&Bub2_Bfa1&!Net1_b1&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&Bub2_Bfa1&Net1_b1&!Net1_b2&Cdc14 | !Clb2_b1&!PP2ACdc55_b1&Bub2_Bfa1&Net1_b1&Net1_b2 | !Clb2_b1&PP2ACdc55_b1&!Bub2_Bfa1&!Tem1 | !Clb2_b1&PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15 | !Clb2_b1&PP2ACdc55_b1&!Bub2_Bfa1&Tem1&Cdc15&Net1_b1&Net1_b2 | !Clb2_b1&PP2ACdc55_b1&Bub2_Bfa1 | Clb2_b1&!Clb2_b2&!PP2ACdc55_b1&Net1_b1&Net1_b2 | Clb2_b1&!Clb2_b2&PP2ACdc55_b1&!Bub2_Bfa1&!Tem1 | Clb2_b1&!Clb2_b2&PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15 | Clb2_b1&!Clb2_b2&PP2ACdc55_b1&!Bub2_Bfa1&Tem1&Cdc15&Net1_b1&Net1_b2 | Clb2_b1&!Clb2_b2&PP2ACdc55_b1&Bub2_Bfa1 | Clb2_b1&Clb2_b2&!PP2ACdc55_b1&Net1_b1&Net1_b2 | Clb2_b1&Clb2_b2&PP2ACdc55_b1&!PP2ACdc55_b2&Net1_b1&Net1_b2 | Clb2_b1&Clb2_b2&PP2ACdc55_b1&PP2ACdc55_b2&!Bub2_Bfa1&!Tem1 | Clb2_b1&Clb2_b2&PP2ACdc55_b1&PP2ACdc55_b2&!Bub2_Bfa1&Tem1&!Cdc15 | Clb2_b1&Clb2_b2&PP2ACdc55_b1&PP2ACdc55_b2&!Bub2_Bfa1&Tem1&Cdc15&Net1_b1&Net1_b2 | Clb2_b1&Clb2_b2&PP2ACdc55_b1&PP2ACdc55_b2&Bub2_Bfa1
+Net1_b2,         !Clb2_b1&PP2ACdc55_b1&!Bub2_Bfa1&!Tem1&Net1_b1 | !Clb2_b1&PP2ACdc55_b1&!Bub2_Bfa1&Tem1&!Cdc15&Net1_b1 | !Clb2_b1&PP2ACdc55_b1&Bub2_Bfa1&Net1_b1 | Clb2_b1&PP2ACdc55_b1&PP2ACdc55_b2&!Bub2_Bfa1&!Tem1&Net1_b1 | Clb2_b1&PP2ACdc55_b1&PP2ACdc55_b2&!Bub2_Bfa1&Tem1&!Cdc15&Net1_b1 | Clb2_b1&PP2ACdc55_b1&PP2ACdc55_b2&Bub2_Bfa1&Net1_b1
+PP2ACdc55_b1,    1
+PP2ACdc55_b2,    !SecurinPds1&!SeparaseEsp1_b1&PP2ACdc55_b1 | SecurinPds1&!SeparaseEsp1_b1&PP2ACdc55_b1 | SecurinPds1&SeparaseEsp1_b1&!SeparaseEsp1_b2&PP2ACdc55_b1
+SecurinPds1,     !Cdc20
+SeparaseEsp1_b1, 1
+SeparaseEsp1_b2, 0
+Tem1,            1

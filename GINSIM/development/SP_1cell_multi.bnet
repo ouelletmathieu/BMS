@@ -1,0 +1,23 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Ci1,      !En
+Ciact_b1, !Dsh&!Ci1&Ciact_b1&Ciact_b2 | !Dsh&Ci1&!Ciact_b1&!Pka_b1 | !Dsh&Ci1&Ciact_b1&!Ciact_b2&!Pka_b1 | !Dsh&Ci1&Ciact_b1&Ciact_b2 | Dsh&!Ci1&Ciact_b1&Ciact_b2 | Dsh&Ci1
+Ciact_b2, Dsh&Ci1&Ciact_b1&!Pka_b1
+Cirep,    !Dsh&Ci1&Pka_b1&Pka_b2
+Dsh,      Fz
+En,       Dsh&!Slp
+Fz,       !Wg_b1&Wg_ext | Wg_b1
+Hh,       En&!Cirep
+Hh_ext,   Hh_ext
+Nkd_b1,   !Nkd_b1&!En | Nkd_b1&!Nkd_b2&!En | Nkd_b1&Nkd_b2
+Nkd_b2,   Dsh&Nkd_b1&!En
+Pka_b1,   !Pka_b1&Ptc_b1 | Pka_b1&!Pka_b2&Ptc_b1 | Pka_b1&Pka_b2
+Pka_b2,   Pka_b1&Ptc_b1
+Ptc_b1,   !En&!Ptc_b1&!Hh_ext | !En&Ptc_b1&!Ptc_b2&!Hh_ext | !En&Ptc_b1&Ptc_b2 | En&Ptc_b1&Ptc_b2
+Ptc_b2,   !En&Ciact_b1&Ptc_b1&!Hh_ext
+Slp,      Dsh&!En
+Wg_b1,    !Wg_b1&Slp&!Nkd_b1&!En&Ciact_b1 | !Wg_b1&Slp&Nkd_b1&!Nkd_b2&!En&Ciact_b1 | !Wg_b1&Slp&Nkd_b1&Nkd_b2&!En&Ciact_b1&Ciact_b2 | Wg_b1&!Wg_b2&Slp&!Nkd_b1&!En&Ciact_b1 | Wg_b1&!Wg_b2&Slp&Nkd_b1&!Nkd_b2&!En&Ciact_b1 | Wg_b1&!Wg_b2&Slp&Nkd_b1&Nkd_b2&!En&Ciact_b1&Ciact_b2 | Wg_b1&Wg_b2
+Wg_b2,    Wg_b1&Slp&!En&Ciact_b1&Ciact_b2
+Wg_ext,   Wg_ext

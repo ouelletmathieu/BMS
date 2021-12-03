@@ -1,0 +1,23 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+AF,       AF
+AS,       AS
+Dmrt1,    !Gata4&Sf1_b1&Sox9_b1&Sox9_b2&!Foxl2 | Gata4&!Foxl2
+Fgf9_b1,  !Sox9_b1&Fgf9_b1 | Sox9_b1&!Sox9_b2&Fgf9_b1 | Sox9_b1&Sox9_b2
+Fgf9_b2,  Sox9_b1&Sox9_b2&Fgf9_b1
+Foxl2,    AF&!Dmrt1
+Gata4,    Gata4
+IW,       IW
+Sf1_b1,   !Wt1&Sf1_b1&Sf1_b2 | Wt1
+Sf1_b2,   Wt1&Sf1_b1&Sox9_b1&Sox9_b2
+Sox9_b1,  !Sf1_b1&Sox9_b1&Sox9_b2 | Sf1_b1&!Sox9_b1&!b_cat_b1&!Foxl2 | Sf1_b1&!Sox9_b1&b_cat_b1&!b_cat_b2&!Foxl2 | Sf1_b1&Sox9_b1&!Sox9_b2&!b_cat_b1&!Foxl2 | Sf1_b1&Sox9_b1&!Sox9_b2&b_cat_b1&!b_cat_b2&!Foxl2 | Sf1_b1&Sox9_b1&Sox9_b2
+Sox9_b2,  !Sry&Sf1_b1&Sox9_b1&!b_cat_b1&!Foxl2 | Sry&Sf1_b1&Sox9_b1&!b_cat_b1&!Foxl2 | Sry&Sf1_b1&Sox9_b1&b_cat_b1&!b_cat_b2&!Foxl2
+Sry,      Y&Wt1&AS&Gata4&Sf1_b1&!Sox9_b1 | Y&Wt1&AS&Gata4&Sf1_b1&Sox9_b1&!Sox9_b2
+Wnt4_b1,  !IW&Wnt4_b1 | IW&Wnt4_b1&Wnt4_b2
+Wnt4_b2,  !IW&!Fgf9_b1&Wnt4_b1
+Wt1,      Wt1
+Y,        Y
+b_cat_b1, !Sox9_b1&!Wnt4_b1&b_cat_b1&b_cat_b2 | !Sox9_b1&Wnt4_b1 | Sox9_b1&!Sox9_b2&!Wnt4_b1&b_cat_b1&b_cat_b2 | Sox9_b1&!Sox9_b2&Wnt4_b1 | Sox9_b1&Sox9_b2&b_cat_b1&b_cat_b2
+b_cat_b2, !Sox9_b1&Wnt4_b1&Wnt4_b2&b_cat_b1 | Sox9_b1&!Sox9_b2&Wnt4_b1&Wnt4_b2&b_cat_b1

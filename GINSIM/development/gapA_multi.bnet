@@ -1,0 +1,11 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Gt,    !Kr_b1
+Hb_b1, 1
+Hb_b2, Hb_b1
+Hb_b3, Hb_b1&Hb_b2
+Kni,   0
+Kr_b1, !Gt&!Hb_b1&Kr_b1&Kr_b2 | !Gt&Hb_b1&!Hb_b2 | !Gt&Hb_b1&Hb_b2&!Hb_b3 | !Gt&Hb_b1&Hb_b2&Hb_b3&Kr_b1&Kr_b2 | Gt&!Hb_b1&Kr_b1&Kr_b2 | Gt&Hb_b1&!Hb_b2&!Kr_b1&!Kni | Gt&Hb_b1&!Hb_b2&Kr_b1&!Kr_b2&!Kni | Gt&Hb_b1&!Hb_b2&Kr_b1&Kr_b2 | Gt&Hb_b1&Hb_b2&!Hb_b3&!Kr_b1&!Kni | Gt&Hb_b1&Hb_b2&!Hb_b3&Kr_b1&!Kr_b2&!Kni | Gt&Hb_b1&Hb_b2&!Hb_b3&Kr_b1&Kr_b2 | Gt&Hb_b1&Hb_b2&Hb_b3&Kr_b1&Kr_b2
+Kr_b2, !Gt&Hb_b1&!Hb_b2&Kr_b1&!Kni | !Gt&Hb_b1&Hb_b2&!Hb_b3&Kr_b1&!Kni

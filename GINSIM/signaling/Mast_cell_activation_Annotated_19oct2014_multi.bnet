@@ -1,0 +1,52 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+AP_1,        C_Jun&c_Fos
+Ag_b1,       Ag_b1
+Ag_b2,       Ag_b1&Ag_b2
+Akt,         PIP3
+Bcr,         SLP_76
+Btk,         Lyn&Syk
+CALCINEURIN, Ca
+C_Jun,       JNK
+Ca,          IP3
+Cbp_PAG,     Lyn
+Csk,         Cbp_PAG
+DAG,         PIP2&PLCG1
+ERK,         MEK
+Elk_1,       !ERK&JNK | ERK
+FYN,         !Csk
+FceRI_IgE,   Ag_b1&Lyn
+FceRI_IgE_P, FceRI_IgE
+FcgRIIB,     Ag_b1&Ag_b2
+FcgRIIB_P,   FcgRIIB&Lyn
+GRB2_SOS,    Bcr&!ERK&LAT&!RasGAP_Dok1
+Gab2,        FYN&LAT2
+IP3,         PIP2&PLCG1
+JNK,         MEKK4_7
+LAT,         Syk
+LAT2,        Lyn&Syk
+Lyn,         !cCbl&Lyn
+MEK,         Raf
+MEKK1,       PAK2
+MEKK4_7,     MEKK1
+NFAT,        CALCINEURIN
+NF_kB,       PKC
+PAK2,        Rac1
+PI3K,        Gab2
+PIP2,        PIP2
+PIP3,        PI3K&PIP2&!SHIP_1
+PKC,         DAG
+PLA,         ERK
+PLCG1,       Btk&!LAT&PIP3&Syk | Btk&LAT&Syk
+RAS,         !GRB2_SOS&PKC | GRB2_SOS
+Rac1,        Bcr&SLP_76&VAV
+Raf,         RAS
+RasGAP_Dok1, SHIP_1
+SHIP_1,      FcgRIIB_P
+SLP_76,      Syk
+Syk,         !cCbl&!ERK&FceRI_IgE_P&Lyn | !cCbl&ERK&!FceRI_IgE_P&Syk | !cCbl&ERK&FceRI_IgE_P&!Lyn&Syk | !cCbl&ERK&FceRI_IgE_P&Lyn
+VAV,         Syk
+cCbl,        cCbl
+c_Fos,       ERK

@@ -1,0 +1,10 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+TrpE,      !Trp_b1&!TrpR
+TrpR,      Trp_b1&Trp_b2
+Trp_b1,    !Trpext_b1&!Trp_b1&TrpE | !Trpext_b1&Trp_b1&!Trp_b2&TrpE | !Trpext_b1&Trp_b1&Trp_b2 | Trpext_b1
+Trp_b2,    Trpext_b1&Trpext_b2&Trp_b1
+Trpext_b1, Trpext_b1
+Trpext_b2, Trpext_b1&Trpext_b2

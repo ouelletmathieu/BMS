@@ -1,0 +1,15 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Eve_b1, !Eve_b1&Prd_b1&!Slp&!Odd | Eve_b1&!Eve_b2&!Run&!Slp | Eve_b1&!Eve_b2&Run&!Slp&!Odd | Eve_b1&Eve_b2
+Eve_b2, Eve_b1&!Eve_b2&Prd_b1&!Run&!Slp&!Odd | Eve_b1&Eve_b2&!Eve_b3&Prd_b1&!Run&!Slp&!Odd | Eve_b1&Eve_b2&Eve_b3
+Eve_b3, Eve_b1&Eve_b2&Prd_b1&!Run&!Slp&!Odd
+Ftz_b1, !Eve_b1&!Slp&!Ftz_b1&!Odd | !Eve_b1&!Slp&Ftz_b1&!Ftz_b2&!Odd | !Eve_b1&!Slp&Ftz_b1&Ftz_b2 | !Eve_b1&Slp&Ftz_b1&Ftz_b2 | Eve_b1&!Eve_b2&!Slp&!Ftz_b1&!Odd | Eve_b1&!Eve_b2&!Slp&Ftz_b1&!Ftz_b2&!Odd | Eve_b1&!Eve_b2&!Slp&Ftz_b1&Ftz_b2 | Eve_b1&!Eve_b2&Slp&Ftz_b1&Ftz_b2 | Eve_b1&Eve_b2&Ftz_b1&Ftz_b2
+Ftz_b2, !Eve_b1&!Slp&Ftz_b1&!Odd | Eve_b1&!Eve_b2&!Slp&Ftz_b1&!Odd
+Odd,    !Eve_b1&!Prd_b1
+Ppa,    !Eve_b1 | Eve_b1&!Eve_b2
+Prd_b1, !Prd_b1&!Odd | Prd_b1&!Prd_b2&!Odd | Prd_b1&Prd_b2
+Prd_b2, Prd_b1&!Ppa&!Odd
+Run,    !Eve_b1&Prd_b1&!Odd | Eve_b1&!Eve_b2&Prd_b1&!Odd
+Slp,    !Eve_b1&!Ftz_b1&!Odd | Eve_b1&!Eve_b2&!Ftz_b1&!Odd

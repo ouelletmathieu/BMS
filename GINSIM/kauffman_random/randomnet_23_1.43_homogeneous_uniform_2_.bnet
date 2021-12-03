@@ -1,0 +1,24 @@
+targets, factors
+Gene1, 0
+Gene2, (Gene7 & !Gene4)
+Gene3, (!Gene9)
+Gene4, (!Gene11 & Gene4 & !Gene8) | (Gene11 & Gene4 & Gene8)
+Gene5, (Gene17)
+Gene6, (!Gene3)
+Gene7, (!Gene17 & !Gene4) | (Gene17 & Gene4)
+Gene8, (Gene12)
+Gene9, 1
+Gene10, 1
+Gene11, 1
+Gene12, 1
+Gene13, (!Gene7 & Gene14) | (Gene7 & !Gene14)
+Gene14, (Gene7 & !Gene11 & Gene8) | (Gene7 & Gene11 & !Gene8)
+Gene15, (Gene11)
+Gene16, 0
+Gene17, 0
+Gene18, (!Gene2 & Gene12) | (!Gene8 & Gene2 & !Gene12) | (Gene8 & Gene12)
+Gene19, 0
+Gene20, (!Gene5) | (Gene17)
+Gene21, 1
+Gene22, 1
+Gene23, (Gene19)

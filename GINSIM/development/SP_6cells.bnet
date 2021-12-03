@@ -1,0 +1,106 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Ci1,       !En1
+Ci2,       !En2
+Ci3,       !En3
+Ci4,       !En4
+Ci5,       !En5
+Ci6,       !En6
+Ciact1_b1, !Dsh1&!Ci1&Ciact1_b1&Ciact1_b2 | !Dsh1&Ci1&!Ciact1_b1&!Pka1_b1 | !Dsh1&Ci1&Ciact1_b1&!Ciact1_b2&!Pka1_b1 | !Dsh1&Ci1&Ciact1_b1&Ciact1_b2 | Dsh1&!Ci1&Ciact1_b1&Ciact1_b2 | Dsh1&Ci1
+Ciact1_b2, Dsh1&Ci1&Ciact1_b1&!Pka1_b1
+Ciact2_b1, !Dsh2&!Ci2&Ciact2_b1&Ciact2_b2 | !Dsh2&Ci2&!Ciact2_b1&!Pka2_b1 | !Dsh2&Ci2&Ciact2_b1&!Ciact2_b2&!Pka2_b1 | !Dsh2&Ci2&Ciact2_b1&Ciact2_b2 | Dsh2&!Ci2&Ciact2_b1&Ciact2_b2 | Dsh2&Ci2
+Ciact2_b2, Dsh2&Ci2&Ciact2_b1&!Pka2_b1
+Ciact3_b1, !Dsh3&!Ci3&Ciact3_b1&Ciact3_b2 | !Dsh3&Ci3&!Ciact3_b1&!Pka3_b1 | !Dsh3&Ci3&Ciact3_b1&!Ciact3_b2&!Pka3_b1 | !Dsh3&Ci3&Ciact3_b1&Ciact3_b2 | Dsh3&!Ci3&Ciact3_b1&Ciact3_b2 | Dsh3&Ci3
+Ciact3_b2, Dsh3&Ci3&Ciact3_b1&!Pka3_b1
+Ciact4_b1, !Dsh4&!Ci4&Ciact4_b1&Ciact4_b2 | !Dsh4&Ci4&!Ciact4_b1&!Pka4_b1 | !Dsh4&Ci4&Ciact4_b1&!Ciact4_b2&!Pka4_b1 | !Dsh4&Ci4&Ciact4_b1&Ciact4_b2 | Dsh4&!Ci4&Ciact4_b1&Ciact4_b2 | Dsh4&Ci4
+Ciact4_b2, Dsh4&Ci4&Ciact4_b1&!Pka4_b1
+Ciact5_b1, !Dsh5&!Ci5&Ciact5_b1&Ciact5_b2 | !Dsh5&Ci5&!Ciact5_b1&!Pka5_b1 | !Dsh5&Ci5&Ciact5_b1&!Ciact5_b2&!Pka5_b1 | !Dsh5&Ci5&Ciact5_b1&Ciact5_b2 | Dsh5&!Ci5&Ciact5_b1&Ciact5_b2 | Dsh5&Ci5
+Ciact5_b2, Dsh5&Ci5&Ciact5_b1&!Pka5_b1
+Ciact6_b1, !Dsh6&!Ci6&Ciact6_b1&Ciact6_b2 | !Dsh6&Ci6&!Ciact6_b1&!Pka6_b1 | !Dsh6&Ci6&Ciact6_b1&!Ciact6_b2&!Pka6_b1 | !Dsh6&Ci6&Ciact6_b1&Ciact6_b2 | Dsh6&!Ci6&Ciact6_b1&Ciact6_b2 | Dsh6&Ci6
+Ciact6_b2, Dsh6&Ci6&Ciact6_b1&!Pka6_b1
+Cirep1,    !Dsh1&Ci1&Pka1_b1&Pka1_b2
+Cirep2,    !Dsh2&Ci2&Pka2_b1&Pka2_b2
+Cirep3,    !Dsh3&Ci3&Pka3_b1&Pka3_b2
+Cirep4,    !Dsh4&Ci4&Pka4_b1&Pka4_b2
+Cirep5,    !Dsh5&Ci5&Pka5_b1&Pka5_b2
+Cirep6,    !Dsh6&Ci6&Pka6_b1&Pka6_b2
+Dsh1,      Fz1
+Dsh2,      Fz2
+Dsh3,      Fz3
+Dsh4,      Fz4
+Dsh5,      Fz5
+Dsh6,      Fz6
+En1,       Dsh1&!Slp1
+En2,       Dsh2&!Slp2
+En3,       Dsh3&!Slp3
+En4,       Dsh4&!Slp4
+En5,       Dsh5&!Slp5
+En6,       Dsh6&!Slp6
+Fz1,       !Wg1_b1&Wg2_b1&Wg2_b2 | Wg1_b1
+Fz2,       !Wg1_b1&!Wg2_b1&Wg3_b1&Wg3_b2 | !Wg1_b1&Wg2_b1 | Wg1_b1&!Wg1_b2&!Wg2_b1&Wg3_b1&Wg3_b2 | Wg1_b1&!Wg1_b2&Wg2_b1 | Wg1_b1&Wg1_b2
+Fz3,       !Wg2_b1&!Wg3_b1&Wg4_b1&Wg4_b2 | !Wg2_b1&Wg3_b1 | Wg2_b1&!Wg2_b2&!Wg3_b1&Wg4_b1&Wg4_b2 | Wg2_b1&!Wg2_b2&Wg3_b1 | Wg2_b1&Wg2_b2
+Fz4,       !Wg3_b1&!Wg4_b1&Wg5_b1&Wg5_b2 | !Wg3_b1&Wg4_b1 | Wg3_b1&!Wg3_b2&!Wg4_b1&Wg5_b1&Wg5_b2 | Wg3_b1&!Wg3_b2&Wg4_b1 | Wg3_b1&Wg3_b2
+Fz5,       !Wg4_b1&!Wg5_b1&Wg6_b1&Wg6_b2 | !Wg4_b1&Wg5_b1 | Wg4_b1&!Wg4_b2&!Wg5_b1&Wg6_b1&Wg6_b2 | Wg4_b1&!Wg4_b2&Wg5_b1 | Wg4_b1&Wg4_b2
+Fz6,       !Wg5_b1&Wg6_b1 | Wg5_b1&!Wg5_b2&Wg6_b1 | Wg5_b1&Wg5_b2
+Hh1,       En1&!Cirep1
+Hh2,       En2&!Cirep2
+Hh3,       En3&!Cirep3
+Hh4,       En4&!Cirep4
+Hh5,       En5&!Cirep5
+Hh6,       En6&!Cirep6
+Nkd1_b1,   !Nkd1_b1&!En1 | Nkd1_b1&!Nkd1_b2&!En1 | Nkd1_b1&Nkd1_b2
+Nkd1_b2,   Dsh1&Nkd1_b1&!En1
+Nkd2_b1,   !Nkd2_b1&!En2 | Nkd2_b1&!Nkd2_b2&!En2 | Nkd2_b1&Nkd2_b2
+Nkd2_b2,   Dsh2&Nkd2_b1&!En2
+Nkd3_b1,   !Nkd3_b1&!En3 | Nkd3_b1&!Nkd3_b2&!En3 | Nkd3_b1&Nkd3_b2
+Nkd3_b2,   Dsh3&Nkd3_b1&!En3
+Nkd4_b1,   !Nkd4_b1&!En4 | Nkd4_b1&!Nkd4_b2&!En4 | Nkd4_b1&Nkd4_b2
+Nkd4_b2,   Dsh4&Nkd4_b1&!En4
+Nkd5_b1,   !Nkd5_b1&!En5 | Nkd5_b1&!Nkd5_b2&!En5 | Nkd5_b1&Nkd5_b2
+Nkd5_b2,   Dsh5&Nkd5_b1&!En5
+Nkd6_b1,   !Nkd6_b1&!En6 | Nkd6_b1&!Nkd6_b2&!En6 | Nkd6_b1&Nkd6_b2
+Nkd6_b2,   Dsh6&Nkd6_b1&!En6
+Pka1_b1,   !Pka1_b1&Ptc1_b1 | Pka1_b1&!Pka1_b2&Ptc1_b1 | Pka1_b1&Pka1_b2
+Pka1_b2,   Pka1_b1&Ptc1_b1
+Pka2_b1,   !Pka2_b1&Ptc2_b1 | Pka2_b1&!Pka2_b2&Ptc2_b1 | Pka2_b1&Pka2_b2
+Pka2_b2,   Pka2_b1&Ptc2_b1
+Pka3_b1,   !Pka3_b1&Ptc3_b1 | Pka3_b1&!Pka3_b2&Ptc3_b1 | Pka3_b1&Pka3_b2
+Pka3_b2,   Pka3_b1&Ptc3_b1
+Pka4_b1,   !Pka4_b1&Ptc4_b1 | Pka4_b1&!Pka4_b2&Ptc4_b1 | Pka4_b1&Pka4_b2
+Pka4_b2,   Pka4_b1&Ptc4_b1
+Pka5_b1,   !Pka5_b1&Ptc5_b1 | Pka5_b1&!Pka5_b2&Ptc5_b1 | Pka5_b1&Pka5_b2
+Pka5_b2,   Pka5_b1&Ptc5_b1
+Pka6_b1,   !Pka6_b1&Ptc6_b1 | Pka6_b1&!Pka6_b2&Ptc6_b1 | Pka6_b1&Pka6_b2
+Pka6_b2,   Pka6_b1&Ptc6_b1
+Ptc1_b1,   !En1&!Ptc1_b1&!Hh2 | !En1&Ptc1_b1&!Ptc1_b2&!Hh2 | !En1&Ptc1_b1&Ptc1_b2 | En1&Ptc1_b1&Ptc1_b2
+Ptc1_b2,   !En1&Ciact1_b1&Ptc1_b1&!Hh2
+Ptc2_b1,   !Hh1&!En2&!Ptc2_b1&!Hh3 | !Hh1&!En2&Ptc2_b1&!Ptc2_b2&!Hh3 | !Hh1&!En2&Ptc2_b1&Ptc2_b2 | !Hh1&En2&Ptc2_b1&Ptc2_b2 | Hh1&Ptc2_b1&Ptc2_b2
+Ptc2_b2,   !Hh1&!En2&Ciact2_b1&Ptc2_b1&!Hh3
+Ptc3_b1,   !Hh2&!En3&!Ptc3_b1&!Hh4 | !Hh2&!En3&Ptc3_b1&!Ptc3_b2&!Hh4 | !Hh2&!En3&Ptc3_b1&Ptc3_b2 | !Hh2&En3&Ptc3_b1&Ptc3_b2 | Hh2&Ptc3_b1&Ptc3_b2
+Ptc3_b2,   !Hh2&!En3&Ciact3_b1&Ptc3_b1&!Hh4
+Ptc4_b1,   !Hh3&!En4&!Ptc4_b1&!Hh5 | !Hh3&!En4&Ptc4_b1&!Ptc4_b2&!Hh5 | !Hh3&!En4&Ptc4_b1&Ptc4_b2 | !Hh3&En4&Ptc4_b1&Ptc4_b2 | Hh3&Ptc4_b1&Ptc4_b2
+Ptc4_b2,   !Hh3&!En4&Ciact4_b1&Ptc4_b1&!Hh5
+Ptc5_b1,   !Hh4&!En5&!Ptc5_b1&!Hh6 | !Hh4&!En5&Ptc5_b1&!Ptc5_b2&!Hh6 | !Hh4&!En5&Ptc5_b1&Ptc5_b2 | !Hh4&En5&Ptc5_b1&Ptc5_b2 | Hh4&Ptc5_b1&Ptc5_b2
+Ptc5_b2,   !Hh4&!En5&Ciact5_b1&Ptc5_b1&!Hh6
+Ptc6_b1,   !Hh5&!En6 | !Hh5&En6&Ptc6_b1&Ptc6_b2 | Hh5&Ptc6_b1&Ptc6_b2
+Ptc6_b2,   !Hh5&!En6&Ciact6_b1&Ptc6_b1
+Slp1,      Dsh1&!En1
+Slp2,      Dsh2&!En2
+Slp3,      Dsh3&!En3
+Slp4,      Dsh4&!En4
+Slp5,      Dsh5&!En5
+Slp6,      Dsh6&!En6
+Wg1_b1,    !Wg1_b1&Slp1&!Nkd1_b1&!En1&Ciact1_b1 | !Wg1_b1&Slp1&Nkd1_b1&!Nkd1_b2&!En1&Ciact1_b1 | !Wg1_b1&Slp1&Nkd1_b1&Nkd1_b2&!En1&Ciact1_b1&Ciact1_b2 | Wg1_b1&!Wg1_b2&Slp1&!Nkd1_b1&!En1&Ciact1_b1 | Wg1_b1&!Wg1_b2&Slp1&Nkd1_b1&!Nkd1_b2&!En1&Ciact1_b1 | Wg1_b1&!Wg1_b2&Slp1&Nkd1_b1&Nkd1_b2&!En1&Ciact1_b1&Ciact1_b2 | Wg1_b1&Wg1_b2
+Wg1_b2,    Wg1_b1&Slp1&!En1&Ciact1_b1&Ciact1_b2
+Wg2_b1,    !Wg2_b1&Slp2&!Nkd2_b1&!En2&Ciact2_b1 | !Wg2_b1&Slp2&Nkd2_b1&!Nkd2_b2&!En2&Ciact2_b1 | !Wg2_b1&Slp2&Nkd2_b1&Nkd2_b2&!En2&Ciact2_b1&Ciact2_b2 | Wg2_b1&!Wg2_b2&Slp2&!Nkd2_b1&!En2&Ciact2_b1 | Wg2_b1&!Wg2_b2&Slp2&Nkd2_b1&!Nkd2_b2&!En2&Ciact2_b1 | Wg2_b1&!Wg2_b2&Slp2&Nkd2_b1&Nkd2_b2&!En2&Ciact2_b1&Ciact2_b2 | Wg2_b1&Wg2_b2
+Wg2_b2,    Wg2_b1&Slp2&!En2&Ciact2_b1&Ciact2_b2
+Wg3_b1,    !Wg3_b1&Slp3&!Nkd3_b1&!En3&Ciact3_b1 | !Wg3_b1&Slp3&Nkd3_b1&!Nkd3_b2&!En3&Ciact3_b1 | !Wg3_b1&Slp3&Nkd3_b1&Nkd3_b2&!En3&Ciact3_b1&Ciact3_b2 | Wg3_b1&!Wg3_b2&Slp3&!Nkd3_b1&!En3&Ciact3_b1 | Wg3_b1&!Wg3_b2&Slp3&Nkd3_b1&!Nkd3_b2&!En3&Ciact3_b1 | Wg3_b1&!Wg3_b2&Slp3&Nkd3_b1&Nkd3_b2&!En3&Ciact3_b1&Ciact3_b2 | Wg3_b1&Wg3_b2
+Wg3_b2,    Wg3_b1&Slp3&!En3&Ciact3_b1&Ciact3_b2
+Wg4_b1,    !Wg4_b1&Slp4&!Nkd4_b1&!En4&Ciact4_b1 | !Wg4_b1&Slp4&Nkd4_b1&!Nkd4_b2&!En4&Ciact4_b1 | !Wg4_b1&Slp4&Nkd4_b1&Nkd4_b2&!En4&Ciact4_b1&Ciact4_b2 | Wg4_b1&!Wg4_b2&Slp4&!Nkd4_b1&!En4&Ciact4_b1 | Wg4_b1&!Wg4_b2&Slp4&Nkd4_b1&!Nkd4_b2&!En4&Ciact4_b1 | Wg4_b1&!Wg4_b2&Slp4&Nkd4_b1&Nkd4_b2&!En4&Ciact4_b1&Ciact4_b2 | Wg4_b1&Wg4_b2
+Wg4_b2,    Wg4_b1&Slp4&!En4&Ciact4_b1&Ciact4_b2
+Wg5_b1,    !Wg5_b1&Slp5&!Nkd5_b1&!En5&Ciact5_b1 | !Wg5_b1&Slp5&Nkd5_b1&!Nkd5_b2&!En5&Ciact5_b1 | !Wg5_b1&Slp5&Nkd5_b1&Nkd5_b2&!En5&Ciact5_b1&Ciact5_b2 | Wg5_b1&!Wg5_b2&Slp5&!Nkd5_b1&!En5&Ciact5_b1 | Wg5_b1&!Wg5_b2&Slp5&Nkd5_b1&!Nkd5_b2&!En5&Ciact5_b1 | Wg5_b1&!Wg5_b2&Slp5&Nkd5_b1&Nkd5_b2&!En5&Ciact5_b1&Ciact5_b2 | Wg5_b1&Wg5_b2
+Wg5_b2,    Wg5_b1&Slp5&!En5&Ciact5_b1&Ciact5_b2
+Wg6_b1,    !Wg6_b1&Slp6&!Nkd6_b1&!En6&Ciact6_b1 | !Wg6_b1&Slp6&Nkd6_b1&!Nkd6_b2&!En6&Ciact6_b1 | !Wg6_b1&Slp6&Nkd6_b1&Nkd6_b2&!En6&Ciact6_b1&Ciact6_b2 | Wg6_b1&!Wg6_b2&Slp6&!Nkd6_b1&!En6&Ciact6_b1 | Wg6_b1&!Wg6_b2&Slp6&Nkd6_b1&!Nkd6_b2&!En6&Ciact6_b1 | Wg6_b1&!Wg6_b2&Slp6&Nkd6_b1&Nkd6_b2&!En6&Ciact6_b1&Ciact6_b2 | Wg6_b1&Wg6_b2
+Wg6_b2,    Wg6_b1&Slp6&!En6&Ciact6_b1&Ciact6_b2

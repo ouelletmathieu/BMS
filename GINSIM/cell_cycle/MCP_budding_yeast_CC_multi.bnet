@@ -1,0 +1,16 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+BUD,     MASS_b1
+Clb2_b1, !Clb2_b1&MASS_b1 | Clb2_b1&!Clb2_b2&MASS_b1 | Clb2_b1&Clb2_b2
+Clb2_b2, !Swe1_b1&Clb2_b1&MASS_b1 | Swe1_b1&!Swe1_b2&!Mih1_b1&Clb2_b1&MASS_b1&MASS_b2 | Swe1_b1&!Swe1_b2&Mih1_b1&!Mih1_b2&Clb2_b1&MASS_b1&MASS_b2 | Swe1_b1&!Swe1_b2&Mih1_b1&Mih1_b2&Clb2_b1&MASS_b1 | Swe1_b1&Swe1_b2&Mih1_b1&!Mih1_b2&Clb2_b1&MASS_b1&MASS_b2 | Swe1_b1&Swe1_b2&Mih1_b1&Mih1_b2&Clb2_b1&MASS_b1
+Hsl1,    BUD
+MASS_b1, MASS_b1
+MASS_b2, MASS_b1&MASS_b2
+Mih1_b1, !Mih1_b1&!Clb2_b1&!Mpk1 | !Mih1_b1&Clb2_b1 | Mih1_b1&!Mih1_b2&!Clb2_b1&!Mpk1 | Mih1_b1&!Mih1_b2&Clb2_b1 | Mih1_b1&Mih1_b2
+Mih1_b2, Mih1_b1&Clb2_b1&!Mpk1
+Mpk1,    !BUD
+SBF,     !Clb2_b1&MASS_b1 | Clb2_b1&!Clb2_b2&MASS_b1
+Swe1_b1, !SBF&Swe1_b1&Swe1_b2 | SBF&!Swe1_b1&!Clb2_b1 | SBF&!Swe1_b1&Clb2_b1&!Clb2_b2 | SBF&!Swe1_b1&Clb2_b1&Clb2_b2&!Hsl1 | SBF&Swe1_b1&!Swe1_b2&!Clb2_b1 | SBF&Swe1_b1&!Swe1_b2&Clb2_b1&!Clb2_b2 | SBF&Swe1_b1&!Swe1_b2&Clb2_b1&Clb2_b2&!Hsl1 | SBF&Swe1_b1&Swe1_b2
+Swe1_b2, SBF&Swe1_b1&!Clb2_b1&!Hsl1 | SBF&Swe1_b1&Clb2_b1&!Clb2_b2&!Hsl1

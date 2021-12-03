@@ -1,0 +1,38 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+Cd19,             Cd19_gene
+Cd19_gene,        !Cebpa&Pax5_prot_active
+Cebpa,            !Cebpa_gene&Cebpa_ER | Cebpa_gene
+Cebpa_ER,         0
+Cebpa_gene,       Spi1_b1&Runx1&!Foxo1
+Cebpb,            !Cebpb&Cebpa&Spi1_b1&Spi1_b2 | Cebpb&Spi1_b1&Spi1_b2
+Csf1,             Csf1
+Csf1r,            Spi1_b1&!Pax5_prot_active
+Csf1r_act,        Csf1r&Csf1
+E2a,              E2a_gene
+E2a_gene,         !Spi1_b1&Ikzf1&Ebf1&Pax5_prot_active | Spi1_b1&Ikzf1
+E2a_prot_Active,  !Id2&E2a
+Ebf1,             Ebf1_gene
+Ebf1_gene,        !Cebpb&!Cebpa&!Spi1_b1&Ets1&E2a_prot_Active&Foxo1&Ebf1&Pax5_prot_active | !Cebpb&!Cebpa&Spi1_b1&!Runx1&Ets1&E2a_prot_Active&Foxo1&Ebf1&Pax5_prot_active | !Cebpb&!Cebpa&Spi1_b1&Runx1&Ets1&!Il7r_act&E2a_prot_Active&Foxo1&Ebf1&Pax5_prot_active | !Cebpb&!Cebpa&Spi1_b1&Runx1&Ets1&Il7r_act&E2a_prot_Active&Foxo1
+Egr2,             !Spi1_b1&Pax5_prot_active | Spi1_b1&!Spi1_b2&!Gfi1 | Spi1_b1&!Spi1_b2&Gfi1&Pax5_prot_active | Spi1_b1&Spi1_b2
+Ets1,             E2a_prot_Active
+Flt3,             Spi1_b1&Ikzf1&!Pax5_prot_active
+Foxo1,            Foxo1_gene
+Foxo1_gene,       !Cebpb&!Cebpa&E2a_prot_Active
+Gfi1,             !Egr2&!Cebpa&!Ikzf1&Pax5_prot_active | !Egr2&!Cebpa&Ikzf1 | !Egr2&Cebpa | Egr2&Pax5_prot_active
+Id2,              Cebpb&Cebpa&Spi1_b1&!Gfi1&!Ebf1
+Ikzf1,            !Mef2c&Pax5_prot_active | Mef2c
+Il7,              Il7
+Il7r_act,         Il7ra&Il7
+Il7ra,            !Cebpb&!Cebpa&!Spi1_b1&Foxo1&Ebf1 | !Cebpb&!Cebpa&Spi1_b1&!Mef2c&Foxo1&Ebf1 | !Cebpb&!Cebpa&Spi1_b1&Mef2c
+Mac1,             Mac1_gene
+Mac1_gene,        Spi1_b1&Spi1_b2
+Mef2c,            !Cebpb&!Cebpa&Spi1_b1
+Pax5,             Pax5_gene
+Pax5_gene,        !Cebpb&!Cebpa&Ebf1
+Pax5_prot_active, !Id2&Pax5
+Runx1,            Spi1_b1
+Spi1_b1,          !Cebpb&!Cebpa&!Spi1_b1&!Runx1&Ikzf1&Foxo1&Ebf1 | !Cebpb&!Cebpa&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&!Ikzf1 | !Cebpb&!Cebpa&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&Ikzf1&!Foxo1 | !Cebpb&!Cebpa&Spi1_b1&!Spi1_b2&Runx1&Gfi1&!Ikzf1&!Foxo1 | !Cebpb&!Cebpa&Spi1_b1&!Spi1_b2&Runx1&Gfi1&Ikzf1 | !Cebpb&!Cebpa&Spi1_b1&Spi1_b2 | !Cebpb&Cebpa&!Csf1r_act&!Spi1_b1&!Runx1&Ikzf1&Foxo1&Ebf1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&!Ikzf1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&Ikzf1&!Foxo1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&Gfi1&!Ikzf1&!Foxo1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&Gfi1&Ikzf1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&Spi1_b2 | !Cebpb&Cebpa&Csf1r_act&!Spi1_b1&!Runx1&Ikzf1&Foxo1&Ebf1 | !Cebpb&Cebpa&Csf1r_act&Spi1_b1&!Spi1_b2&Runx1 | !Cebpb&Cebpa&Csf1r_act&Spi1_b1&Spi1_b2 | Cebpb&!Csf1r_act&!Spi1_b1&!Runx1&Ikzf1&Foxo1&Ebf1 | Cebpb&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&!Ikzf1 | Cebpb&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&!Gfi1&Ikzf1&!Foxo1 | Cebpb&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&Gfi1&!Ikzf1&!Foxo1 | Cebpb&!Csf1r_act&Spi1_b1&!Spi1_b2&Runx1&Gfi1&Ikzf1 | Cebpb&!Csf1r_act&Spi1_b1&Spi1_b2 | Cebpb&Csf1r_act&!Spi1_b1&!Runx1&Ikzf1&Foxo1&Ebf1 | Cebpb&Csf1r_act&Spi1_b1&!Spi1_b2&Runx1 | Cebpb&Csf1r_act&Spi1_b1&Spi1_b2
+Spi1_b2,          !Cebpb&!Cebpa&Spi1_b1&Runx1&!Gfi1&!Ikzf1 | !Cebpb&!Cebpa&Spi1_b1&Runx1&!Gfi1&Ikzf1&!Foxo1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&Runx1&!Gfi1&!Ikzf1 | !Cebpb&Cebpa&!Csf1r_act&Spi1_b1&Runx1&!Gfi1&Ikzf1&!Foxo1 | !Cebpb&Cebpa&Csf1r_act&Spi1_b1&Runx1 | Cebpb&!Csf1r_act&Spi1_b1&Runx1&!Gfi1&!Ikzf1 | Cebpb&!Csf1r_act&Spi1_b1&Runx1&!Gfi1&Ikzf1&!Foxo1 | Cebpb&Csf1r_act&Spi1_b1&Runx1

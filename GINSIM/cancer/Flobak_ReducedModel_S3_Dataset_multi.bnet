@@ -1,0 +1,18 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+AKT,             !ERK&!TAK1&!AKT&!PI3K&GSK3 | !ERK&!TAK1&!AKT&PI3K | !ERK&!TAK1&AKT&PI3K | !ERK&TAK1&PI3K&!GSK3&betacatenin | !ERK&TAK1&PI3K&GSK3 | ERK&!TAK1&PI3K | ERK&TAK1&PI3K&!GSK3&betacatenin | ERK&TAK1&PI3K&GSK3
+Antisurvival_b1, !ERK&!p38alpha | !ERK&p38alpha&!AKT | !ERK&p38alpha&AKT&Antisurvival_b1&Antisurvival_b2 | ERK&!AKT | ERK&AKT&Antisurvival_b1&Antisurvival_b2
+Antisurvival_b2, !ERK&!TAK1&!AKT&Antisurvival_b1 | !ERK&!TAK1&AKT&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | !ERK&TAK1&!p38alpha&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | !ERK&TAK1&p38alpha&!AKT&!PI3K&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | !ERK&TAK1&p38alpha&!AKT&PI3K&!GSK3&!betacatenin&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | !ERK&TAK1&p38alpha&!AKT&PI3K&!GSK3&betacatenin&Antisurvival_b1 | !ERK&TAK1&p38alpha&!AKT&PI3K&GSK3&Antisurvival_b1 | !ERK&TAK1&p38alpha&AKT&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | ERK&!TAK1&!AKT&Antisurvival_b1 | ERK&!TAK1&AKT&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3 | ERK&TAK1&Antisurvival_b1&Antisurvival_b2&Antisurvival_b3
+Antisurvival_b3, !ERK&!TAK1&p38alpha&!AKT&PI3K&Antisurvival_b1&Antisurvival_b2
+ERK,             !MEK&!ERK&!AKT | MEK
+GSK3,            GSK3
+MEK,             !ERK | ERK&!TAK1 | ERK&TAK1&!p38alpha | ERK&TAK1&p38alpha&!AKT | ERK&TAK1&p38alpha&AKT&!GSK3&betacatenin | ERK&TAK1&p38alpha&AKT&GSK3
+PI3K,            !ERK | ERK&!TAK1 | ERK&TAK1&!GSK3&betacatenin | ERK&TAK1&GSK3
+Prosurvival_b1,  !ERK&!TAK1 | !ERK&TAK1&!betacatenin&Prosurvival_b1&Prosurvival_b2 | !ERK&TAK1&betacatenin | ERK&!TAK1 | ERK&TAK1&!PI3K&!betacatenin&Prosurvival_b1&Prosurvival_b2 | ERK&TAK1&!PI3K&betacatenin | ERK&TAK1&PI3K&!GSK3&!betacatenin&Prosurvival_b1&Prosurvival_b2 | ERK&TAK1&PI3K&!GSK3&betacatenin | ERK&TAK1&PI3K&GSK3
+Prosurvival_b2,  !TAK1&Prosurvival_b1 | TAK1&!betacatenin&Prosurvival_b1&Prosurvival_b2&Prosurvival_b3 | TAK1&betacatenin&Prosurvival_b1
+Prosurvival_b3,  ERK&!TAK1&PI3K&Prosurvival_b1&Prosurvival_b2 | ERK&TAK1&PI3K&betacatenin&Prosurvival_b1&Prosurvival_b2
+TAK1,            !p38alpha
+betacatenin,     betacatenin
+p38alpha,        !ERK&!p38alpha

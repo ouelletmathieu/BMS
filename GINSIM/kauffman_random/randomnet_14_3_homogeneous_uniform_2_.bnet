@@ -1,0 +1,15 @@
+targets, factors
+Gene1, (!Gene10 & !Gene11) | (!Gene4 & Gene11 & Gene7) | (Gene10 & Gene11)
+Gene2, (!Gene3 & !Gene8 & !Gene1) | (!Gene7 & !Gene3 & !Gene1) | (!Gene3 & Gene8 & Gene14) | (!Gene7 & Gene3 & !Gene8 & Gene1 & !Gene14) | (Gene7 & !Gene3 & Gene8 & Gene1) | (Gene7 & !Gene8 & !Gene1 & Gene14) | (Gene7 & Gene8 & Gene1 & Gene14)
+Gene3, (!Gene3) | (!Gene12)
+Gene4, (!Gene9)
+Gene5, (!Gene12 & Gene13) | (Gene12 & !Gene13) | (Gene4 & Gene13)
+Gene6, (!Gene2)
+Gene7, (!Gene1 & Gene2)
+Gene8, (!Gene11 & !Gene4) | (!Gene11 & Gene13) | (Gene11 & Gene4 & !Gene13)
+Gene9, (!Gene13 & !Gene5 & !Gene14) | (Gene5 & Gene14) | (Gene13 & Gene5)
+Gene10, (!Gene12 & !Gene3 & Gene6) | (!Gene7 & !Gene12 & Gene1) | (!Gene7 & !Gene12 & Gene3 & !Gene6) | (!Gene7 & Gene12 & !Gene3 & !Gene1) | (Gene12 & Gene3 & !Gene1 & Gene6) | (!Gene7 & Gene3 & Gene1 & !Gene6) | (Gene7 & !Gene12 & !Gene3 & !Gene1) | (Gene7 & Gene3 & Gene6) | (Gene7 & Gene12 & !Gene3 & Gene1)
+Gene11, (!Gene14 & !Gene12) | (!Gene3 & Gene12) | (Gene9 & !Gene12) | (Gene3 & !Gene12) | (Gene9 & Gene14)
+Gene12, (!Gene13 & !Gene6 & !Gene9) | (!Gene14 & Gene8) | (!Gene13 & !Gene9 & Gene8) | (!Gene6 & !Gene9 & Gene14) | (Gene13 & Gene14 & !Gene8) | (Gene13 & Gene6 & Gene9)
+Gene13, 1
+Gene14, 0

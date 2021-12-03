@@ -1,0 +1,107 @@
+# model in BoolNet format
+# the header targets, factors is mandatory to be importable in the R package BoolNet
+
+targets, factors
+APC,           APC
+BCL6,          !TBET&!STAT1&!STAT3&STAT4&!STAT5_b1 | !TBET&!STAT1&STAT3&!STAT4&!STAT5_b1 | !TBET&!STAT1&STAT3&STAT4 | !TBET&STAT1&!STAT3&!STAT5_b1 | !TBET&STAT1&STAT3&!STAT4&!STAT5_b1 | !TBET&STAT1&STAT3&STAT4
+CD28,          APC
+CGC,           1
+FOXP3,         !RORGT&!FOXP3&!STAT1&STAT5_b1&!STAT6&SMAD3&NFAT | !RORGT&FOXP3&STAT5_b1&!STAT6&NFAT | RORGT&!FOXP3&!STAT1&!STAT3&STAT5_b1&!STAT6&SMAD3&NFAT | RORGT&FOXP3&STAT5_b1&!STAT6&NFAT
+GATA3,         !IL29R&!IL25R&!TBET&!GATA3&!BCL6&STAT6&!PU1 | !IL29R&!IL25R&!TBET&GATA3&!BCL6&!PU1 | !IL29R&!IL25R&TBET&GATA3&!BCL6&!PU1 | !IL29R&IL25R&!TBET&!BCL6&!PU1 | !IL29R&IL25R&TBET&GATA3&!BCL6&!PU1
+GP130,         1
+IFNAR,         !IFNB_e&IFNA_e&IFNAR1&IFNAR2 | IFNB_e&IFNAR1&IFNAR2
+IFNAR1,        1
+IFNAR2,        1
+IFNA_e,        IFNA_e
+IFNB_e,        IFNB_e
+IFNG,          !IL18R&!TBET&!FOXP3&STAT4&proliferation&NFAT | !IL18R&TBET&!FOXP3&!STAT4&RUNX3&proliferation&NFAT | !IL18R&TBET&!FOXP3&STAT4&proliferation&NFAT | IL18R&!FOXP3&proliferation&NFAT
+IFNGR,         !IFNG_e&IFNGR1&IFNGR2&IFNG | IFNG_e&IFNGR1&IFNGR2
+IFNGR1,        1
+IFNGR2,        1
+IFNG_e,        IFNG_e
+IKB,           !TCR
+IL10,          !IL18R&!IL33R&!GATA3&!STAT3&!STAT4&!cMAF&IRF1&proliferation&NFAT | !IL18R&!IL33R&!GATA3&!STAT3&!STAT4&cMAF&proliferation&NFAT | !IL18R&!IL33R&!GATA3&!STAT3&STAT4&proliferation&NFAT | !IL18R&!IL33R&!GATA3&STAT3&proliferation&NFAT | !IL18R&!IL33R&GATA3&proliferation&NFAT
+IL10R,         !IL10_e&IL10RB&IL10RA&IL10 | IL10_e&IL10RB&IL10RA
+IL10RA,        1
+IL10RB,        1
+IL10_e,        IL10_e
+IL12R,         IL12_e&IL12RB1&IL12RB2
+IL12RB1,       1
+IL12RB2,       !STAT6
+IL12_e,        IL12_e
+IL13,          !IL33R&!GATA3&!FOXP3&cMAF&proliferation&NFAT | !IL33R&GATA3&!FOXP3&proliferation&NFAT | IL33R&!FOXP3&proliferation&NFAT
+IL15R,         IL15_e&CGC&IL15RA&IL2RB
+IL15RA,        1
+IL15_e,        IL15_e
+IL17,          RORGT&!FOXP3&STAT3&proliferation&NFKB&NFAT | RORGT&FOXP3&!STAT1&STAT3&proliferation&NFKB&NFAT | RORGT&FOXP3&STAT1&STAT3&!STAT5_b1&proliferation&NFKB&NFAT | RORGT&FOXP3&STAT1&STAT3&STAT5_b1&!STAT6&proliferation&NFKB&NFAT
+IL17RB,        1
+IL18R,         IL18_e&IL18RAP&IL18RA&STAT4
+IL18RA,        1
+IL18RAP,       1
+IL18_e,        IL18_e
+IL1A_e,        IL1A_e
+IL1B_e,        IL1B_e
+IL1R,          !IL1B_e&IL1A_e&IL1RAP&IL1R1 | IL1B_e&IL1RAP&IL1R1
+IL1R1,         STAT3
+IL1RAP,        1
+IL1RL2,        1
+IL2,           !TBET&!FOXP3&!STAT5_b1&!NFKB&NFAT | !TBET&!FOXP3&!STAT5_b1&NFKB | !TBET&!FOXP3&STAT5_b1&!STAT6&!NFKB&NFAT | !TBET&!FOXP3&STAT5_b1&!STAT6&NFKB | TBET&!FOXP3&!STAT5_b1&NFAT | TBET&!FOXP3&STAT5_b1&!STAT6&NFAT
+IL21,          !STAT3&!STAT4&cMAF&proliferation&NFAT | !STAT3&STAT4&proliferation&NFAT | STAT3&proliferation&NFAT
+IL21R,         !IL21_e&GP130&CGC&IL21 | IL21_e&GP130&CGC
+IL21_e,        IL21_e
+IL22,          !STAT1&STAT3&!cMAF&proliferation&NFAT | STAT1&!cMAF&proliferation&NFAT
+IL23R,         IL23_e&GP130&IL12RB1&RORGT&STAT3
+IL23_e,        IL23_e
+IL24,          STAT6&proliferation&NFAT
+IL25,          GATA3&proliferation&NFAT
+IL25R,         !IL25_e&IL17RB&IL25 | IL25_e&IL17RB
+IL25_e,        IL25_e
+IL27R,         IL27_e&GP130&IL27RA
+IL27RA,        1
+IL27_e,        IL27_e
+IL28RA,        1
+IL29R,         IL29_e&IL10RB&IL28RA
+IL29_e,        IL29_e
+IL2RA,         !FOXP3&!STAT5_b1&!SMAD3&NFKB&NFAT | !FOXP3&!STAT5_b1&SMAD3&NFAT | !FOXP3&STAT5_b1&NFAT | FOXP3&NFAT
+IL2RB,         1
+IL2R_b1,       !IL2_e&!IL2R_b1&CGC&IL2RB&IL2 | !IL2_e&IL2R_b1&!IL2R_b2&CGC&IL2RB&IL2 | !IL2_e&IL2R_b1&IL2R_b2 | IL2_e&!IL2R_b1&CGC&IL2RB | IL2_e&IL2R_b1&!IL2R_b2&CGC&IL2RB | IL2_e&IL2R_b1&IL2R_b2
+IL2R_b2,       !IL2_e&IL2R_b1&CGC&IL2RB&IL2RA&IL2 | IL2_e&IL2R_b1&CGC&IL2RB&IL2RA
+IL2_e,         IL2_e
+IL3,           GATA3&proliferation&NFAT
+IL31,          STAT6&proliferation&NFAT
+IL33R,         IL33_e&IL1RAP&ST2
+IL33_e,        IL33_e
+IL35,          FOXP3&proliferation&NFAT
+IL36R,         IL36_e&IL1RAP&IL1RL2
+IL36_e,        IL36_e
+IL4,           !TBET&GATA3&!FOXP3&!STAT5_b1&cMAF&!IRF1&proliferation&NFAT | !TBET&GATA3&!FOXP3&STAT5_b1&!IRF1&proliferation&NFAT | TBET&GATA3&!FOXP3&!STAT5_b1&cMAF&!IRF1&!RUNX3&proliferation&NFAT | TBET&GATA3&!FOXP3&STAT5_b1&!IRF1&!RUNX3&proliferation&NFAT
+IL4R,          !IL4_e&CGC&IL4RA&IL4 | IL4_e&CGC&IL4RA
+IL4RA,         1
+IL4_e,         IL4_e
+IL5,           !IL33R&!GATA3&!FOXP3&cMAF&proliferation&NFAT | !IL33R&GATA3&!FOXP3&proliferation&NFAT | IL33R&!FOXP3&proliferation&NFAT
+IL6,           STAT3&proliferation&NFAT
+IL6R,          !IL6_e&GP130&IL6RA&IL6 | IL6_e&GP130&IL6RA
+IL6RA,         1
+IL6_e,         IL6_e
+IL9,           !IL33R&STAT6&!PU1&SMAD3&proliferation&!NFKB&NFAT | !IL33R&STAT6&!PU1&SMAD3&proliferation&NFKB | !IL33R&STAT6&PU1&proliferation&!NFKB&NFAT | !IL33R&STAT6&PU1&proliferation&NFKB | IL33R&STAT6&proliferation&!NFKB&NFAT | IL33R&STAT6&proliferation&NFKB
+IRF1,          STAT1
+NFAT,          TCR&CD28
+NFKB,          !FOXP3&!IKB
+PU1,           TGFBR
+RORGT,         TGFBR&!FOXP3&!BCL6&STAT3
+RUNX3,         TBET
+SMAD3,         TGFBR
+ST2,           GATA3
+STAT1,         !IFNGR&!IL27R&IFNAR | !IFNGR&IL27R | IFNGR
+STAT3,         !IL1R&!IL6R&!IL21R&!IL23R&IL27R | !IL1R&!IL6R&!IL21R&IL23R | !IL1R&!IL6R&IL21R | !IL1R&IL6R | IL1R
+STAT4,         IL12R&!GATA3
+STAT5_b1,      !IL2R_b1&!IL15R&STAT5_b1&STAT5_b2 | !IL2R_b1&IL15R | IL2R_b1
+STAT5_b2,      IL2R_b1&IL2R_b2&STAT5_b1
+STAT6,         IL4R
+TBET,          !IL36R&!TBET&!RORGT&!BCL6&STAT1 | !IL36R&TBET&!RORGT&!BCL6 | IL36R&!RORGT&!BCL6
+TCR,           APC
+TGFB,          FOXP3&proliferation&NFAT
+TGFBR,         !TGFB_e&TGFB | TGFB_e
+TGFB_e,        TGFB_e
+cMAF,          TGFBR&STAT3
+proliferation, !STAT5_b1&proliferation | STAT5_b1&!STAT5_b2&proliferation | STAT5_b1&STAT5_b2
