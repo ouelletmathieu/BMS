@@ -5,6 +5,7 @@ import networkx as nx
 import numpy as np
 import math
 import itertools
+import random
 import networkx.algorithms.isomorphism as iso
 from boolean.boolean_util import getDensity, getMaxCycleLength
 from boolean.boolean_util import getInfoRule, checkIfConjugate3, checkIfConjugate2, constructGraph, listToArray, countNonConjugate2
@@ -498,6 +499,63 @@ def get_tree_input_3node():
     print("finish")
     
     return list_1_reprentative, all_matrix, all_matrix_repr_nb
+
+def generate_wrong_motif_mat(list_motif_to_use, nodeNb, max_try):
+
+
+    density_min = 0.2 + 0.8*random.random()
+    min_edge = int(density_min*nodeNb*nodeNb)
+
+    density_from_motif = 0
+
+    mat = np.zeros((nodeNb,nodeNb))
+    mat_node_fixed = np.zeros((nodeNb,nodeNb))
+
+    node_set = list(range(nodeNb))
+    list_node_motif = list(itertools.permutations(node_set,3))
+
+    nb_edge, nbmotif, nb_try, node = 0, 0, 0, nodeNb
+
+    while nb_edge < min_edge and nb_try<max_try:
+        doFit = True
+        nb_try+=1 
+
+        motif_to_try = random.choice(list_motif_to_use)
+        indices = list_node_motif[random.randrange(0,len(list_node_motif))]  
+
+        for i in range(3):
+            for j in range(3):
+
+                if mat_node_fixed[indices[i], indices[j]]!=0:
+                    if mat[indices[i], indices[j]] != motif_to_try[i,j]:
+                        doFit=False
+
+        if  doFit:
+            nbmotif+=1
+            for i in range(3):
+                for j in range(3):
+                    if mat[indices[i], indices[j]] == 0 and motif_to_try[i,j]!=0:
+                        density_from_motif+=1/(nodeNb*nodeNb)
+                        nb_edge+=1
+                    mat[indices[i], indices[j]] = motif_to_try[i,j]
+                    mat_node_fixed[indices[i], indices[j]] = 1
+
+
+    nb_try = 0
+    if nb_edge < min_edge:
+
+        while nb_try<max_try and nb_edge < min_edge:
+            nb_try+=1
+            randi = random.randrange(0,nodeNb)
+            randj = random.randrange(0,nodeNb)
+            if mat[randi, randj] == 0:
+                nb_edge+=1
+                if random.random()<0.5:
+                    mat[randi, randj] = -1
+                else:
+                    mat[randi, randj] = 1
+
+    return mat, density_from_motif
 
 class DecisionTree:
     """Allow fast finding of motifs

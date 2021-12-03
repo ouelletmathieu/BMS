@@ -16,14 +16,9 @@ def plot_mating_comparison():
     path_mix = "./data_example/mating_strategy/swap_mating_nodes_"+ str(node) +".txt"
     path_cycle = './data_example/mating_strategy/cycle_mating_nodes_'+ str(node) +'.txt'
 
-
-
     df_random = pd.read_csv(path_random)
     df_mix = pd.read_csv(path_mix)
     df_cycle = pd.read_csv(path_cycle)
-
-
-
 
     fig, axs = plt.subplots(nrows=1, ncols=1, figsize=(6, 6))
     fig.subplots_adjust(wspace = 0.3 )
@@ -33,9 +28,6 @@ def plot_mating_comparison():
     X,Y, STD = get_average_x_y(df_random, 'cycle1', 'cycle3', min_count = 5)
     X_mix,Y_mix, STD = get_average_x_y(df_mix, 'cycle1', 'cycle3', min_count = 5)
     X_cycle,Y_cycle, STD = get_average_x_y(df_cycle, 'cycle1', 'cycle3', min_count = 5)
-
-
-
 
     imsh = ax.plot(X,Y, marker='o',color=colorVec[2] , label='Random', ls='None')
     imsh = ax.plot(X_mix,Y_mix, marker='o',color=colorVec[1] , label='Mixed', ls='None')

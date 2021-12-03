@@ -23,7 +23,6 @@ def main():
     min_cycle_to_consider = 7
     output_file = "./data_example/cycle_sensibility/edge_removed_nodes_"+str(node)+".txt"
 
-
     file = open(output_file, 'a') 
     header = "nb_sample,node,max_cycle,max_cycle,avgcycle,max_delta,avg_delta,\n"
     if os.stat(output_file).st_size < 10:

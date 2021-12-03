@@ -1,6 +1,7 @@
 import matplotlib
 import math
-
+import scipy.stats as stats
+import numpy as np
 
 colorBlue_3pc = (41/255.0, 171/255.0, 226/255.0, 0.03)
 colordarkRed  =(139/255.0, 99/255.0,  105/255.0 , 1)
@@ -216,3 +217,127 @@ def get_all(dataframe, varx, vary):
         y.append(row[vary])
         
     return x, y
+
+def get_binned_dict(dataframe, varx, vary, cond_col = 'None', min_col = 0):
+    """get the dictionarry of vary per varx in the sample
+
+    Args:
+        dataframe ([panda dataframe]): panda dataframe
+        varx ([str]): name of the column x
+        vary ([str]): name of the column y
+        cond_col (str, optional): Condition used in the dataframe for filtering using dataframe[cond_col].to_list(). Defaults to 'None'.
+        min_col (int, optional): [description]. Defaults to 0.
+
+    Returns:
+        dict_count, dict_y
+    """
+    dict_count, dict_y  = dict(),  dict()
+    list_value_x, list_value_y = dataframe[varx].to_list(), dataframe[vary].to_list()
+    list_value_x_list, list_value_y_list = list(), list()
+    
+    if cond_col!='None':
+        list_value_cond = dataframe[cond_col].to_list()
+
+        for i in range(len(list_value_x)):
+            if list_value_cond[i]/list_value_x[i] > min_col:
+                list_value_x_list.append(list_value_x[i])
+                list_value_y_list.append(list_value_y[i])
+    
+        list_value_x, list_value_y=list_value_x_list, list_value_y_list
+    
+    for i in range(len(list_value_x)):
+    
+        xrow, yrow = list_value_x[i], list_value_y[i]
+
+        if xrow in dict_y:
+            dict_y[xrow].append(yrow)
+            dict_count[xrow]+=1
+        else:
+            dict_y[xrow] = []
+            dict_y[xrow].append(yrow)
+            dict_count[xrow] = 1
+            
+    return dict_count, dict_y
+
+def get_density_x_y_with_count(dataframe, varx, cond_col = 'None', min_col = 0, check_cond = True, toPrint = False):
+    
+    dict_count = dict()
+    total = 0
+
+    x, y = list(), list()    
+    
+    list_xrow = dataframe[varx].to_list()
+    if cond_col!='None':
+        list_cond = dataframe[cond_col].to_list()
+    if check_cond :
+        list_density = dataframe['density'].to_list()
+    
+    for i in range(len(list_xrow)):
+        
+        xrow = list_xrow[i]
+        if toPrint:
+            print(xrow)
+        if cond_col!='None' and check_cond:
+            if list_density[i] !=0 :
+                if list_cond[i]/list_density[i]>min_col:
+                    total+=1
+                    if xrow in dict_count:
+                        dict_count[xrow]+=1
+                    else:
+                        dict_count[xrow] = 1
+        else:    
+            total+=1
+            if xrow in dict_count:
+                dict_count[xrow]+=1
+            else:
+                dict_count[xrow] = 1
+
+    for key, value in dict_count.items():
+        x.append(key)
+        y.append(value/total)
+    
+    return x, y, dict_count, total
+
+def two_proprotions_confint(success_a, size_a, success_b, size_b, significance = 0.05):
+    """
+    A/B test for two proportions;
+    given a success a trial size of group A and B compute
+    its confidence interval;
+    resulting confidence interval matches R's prop.test function
+
+    Parameters
+    ----------
+    success_a, success_b : int
+        Number of successes in each group
+
+    size_a, size_b : int
+        Size, or number of observations in each group
+
+    significance : float, default 0.05
+        Often denoted as alpha. Governs the chance of a false positive.
+        A significance level of 0.05 means that there is a 5% chance of
+        a false positive. In other words, our confidence level is
+        1 - 0.05 = 0.95
+
+    Returns
+    -------
+    prop_diff : float
+        Difference between the two proportion
+
+    confint : 1d ndarray
+        Confidence interval of the two proportion test
+    """
+    prop_a = success_a / size_a
+    prop_b = success_b / size_b
+    var = prop_a * (1 - prop_a) / size_a + prop_b * (1 - prop_b) / size_b
+    se = np.sqrt(var)
+
+    # z critical value
+    confidence = 1 - significance
+    z = stats.norm(loc = 0, scale = 1).ppf(confidence + significance / 2)
+
+    # standard formula for the confidence interval
+    # point-estimtate +- z * standard-error
+    prop_diff = prop_b - prop_a
+    confint = prop_diff + np.array([-1, 1]) * z * se
+    return prop_diff, confint
