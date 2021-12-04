@@ -90,7 +90,7 @@ def load_model_analysis():
     
         list_param = model.split("_")
         
-        output_list = [model," , ",list_param[1]," , ", list_param[2]," , " , list_param[3]," , ",  list_param[4]," , ",list_param[5], " , ",invert_tot/ntot]
+        output_list = [model,list_param[1],list_param[2],list_param[3],list_param[4],list_param[5],invert_tot/ntot]
         print_list_file(output_list, file)
         file.flush()
 

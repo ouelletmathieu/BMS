@@ -15,7 +15,8 @@ def plot_mating_comparison():
     path_random = "./data_example/mating_strategy/random_mating_nodes_"+ str(node) +".txt"
     path_mix = "./data_example/mating_strategy/swap_mating_nodes_"+ str(node) +".txt"
     path_cycle = './data_example/mating_strategy/cycle_mating_nodes_'+ str(node) +'.txt'
-
+    fig_path = "./fig/mating_strategy.pdf"
+    
     df_random = pd.read_csv(path_random)
     df_mix = pd.read_csv(path_mix)
     df_cycle = pd.read_csv(path_cycle)
@@ -39,7 +40,7 @@ def plot_mating_comparison():
     ax.set( xlabel='parent\'s cycle', ylabel='child\'s cycle')
     ax.legend(loc=0)
 
-    plt.savefig("./fig/mating_strategy.pdf", transparent=True)
+    plt.savefig(fig_path, transparent=True)
         
 
 
